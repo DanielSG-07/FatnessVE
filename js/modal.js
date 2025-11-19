@@ -33,7 +33,7 @@ document.querySelectorAll('.menu-item').forEach(item => {
 
 // Populate ingredients based on item
 function populateIngredients(itemTitle) {
-  currentItemData = menuData[itemTitle];
+  currentItemData = menuData.items[itemTitle];
 
   if (!currentItemData) {
     ingredientSection.style.display = 'none';

@@ -1,5 +1,6 @@
 // Cart functionality
 let cart = [];
+window.cart = cart;
 const cartIcon = document.querySelector('.cart-icon');
 const cartCount = document.getElementById('cart-count');
 const cartDisplay = document.getElementById('cart-display');
@@ -79,11 +80,13 @@ function loadCart() {
           typeof cartItem.quantity === 'number' &&
           cartItem.quantity > 0
         );
+        window.cart = cart; // Update the global reference
       }
       updateCartCount();
     } catch (error) {
       console.error('Error loading cart from localStorage:', error);
       cart = [];
+      window.cart = cart;
       localStorage.removeItem('cart');
     }
   }
@@ -93,6 +96,7 @@ function loadCart() {
 function saveCart() {
   localStorage.setItem('cart', JSON.stringify(cart));
 }
+window.saveCart = saveCart; // Make global
 
 // Initialize cart on page load
 document.addEventListener('DOMContentLoaded', loadCart);
@@ -163,6 +167,7 @@ function updateCartCount() {
     cartCount.textContent = totalItems;
   }
 }
+window.updateCartCount = updateCartCount; // Make global
 
 // Show/hide cart
 if (cartIcon) {
@@ -284,11 +289,7 @@ function renderCart() {
     document.querySelectorAll('.remove-item').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const index = parseInt(e.target.getAttribute('data-index'));
-        if (cart[index].quantity > 1) {
-          cart[index].quantity -= 1;
-        } else {
-          cart.splice(index, 1);
-        }
+        cart.splice(index, 1);
         updateCartCount();
         saveCart();
         renderCart();
@@ -344,6 +345,7 @@ function renderCart() {
     }
   }
 }
+window.renderCart = renderCart; // Make global
 
 // Checkout functionality - Send order via WhatsApp
 if (checkoutBtn) {

@@ -1,5 +1,5 @@
 // Carousel data for FATNESS promotions with prices and discounts
-const carouselImages = [
+export const carouselImages = [
     {
         src: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=999",
         alt: "Delicious burger",

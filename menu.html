@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu - FATNESS</title>
     <link rel="stylesheet" href="css/style.css">
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' 'unsafe-eval' https://apis.google.com https://accounts.google.com;">
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <meta name="google-signin-client_id" content="75227419697-3biru3732ocv8o7uqo1r3r8vh261aemi.apps.googleusercontent.com">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://www.gstatic.com https://*.firebaseio.com https://*.googleapis.com https://apis.google.com; connect-src 'self' wss://*.firebaseio.com https://*.googleapis.com https://www.gstatic.com;">
 </head>
 <body>
     <header>
@@ -197,8 +195,9 @@
                         <h5>Opciones Adicionales:</h5>
                         <div id="optional-list"></div>
                     </div>
-                    <button id="add-to-cart-btn" class="btn">Agregar al Carrito</button>
                 </div>
+
+                <button id="add-to-cart-btn" class="btn">Agregar al Carrito</button>
             </div>
         </div>
     </div>
@@ -240,7 +239,7 @@
                     <div class="divider">
                         <span>O</span>
                     </div>
-                    <div class="g_id_signin"></div>
+                    <button id="google-signin-btn" class="btn google-btn">Iniciar Sesión con Google</button>
                 </div>
 
                 <div id="register-form" class="auth-form" style="display: none;">
@@ -256,14 +255,38 @@
                         </div>
                         <div class="form-group">
                             <label for="signup-password">Contraseña</label>
-                            <input type="password" id="signup-password" required>
+                            <div class="password-container" style="position: relative;">
+                                <input type="password" id="signup-password" required style="padding-right: 40px;">
+                                <span class="password-toggle" id="signup-password-toggle" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" fill="#666"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="password-tooltip" id="password-tooltip" style="display: none; background: #f9f9f9; border: 1px solid #ccc; padding: 10px; border-radius: 4px; margin-top: 5px;">
+                                <p>La contraseña debe tener:</p>
+                                <ul>
+                                    <li id="req-length">Mínimo 8 caracteres</li>
+                                    <li id="req-uppercase">Al menos una mayúscula</li>
+                                    <li id="req-special">Al menos un carácter especial (!@#$%^&*)</li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="signup-confirm-password">Confirmar Contraseña</label>
-                            <input type="password" id="signup-confirm-password" required>
+                            <div class="password-container" style="position: relative;">
+                                <input type="password" id="signup-confirm-password" required style="padding-right: 40px;">
+                                <span class="password-toggle" id="signup-confirm-password-toggle" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" fill="#666"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div id="confirm-password-error" class="error-message" style="color: red; display: none;"></div>
                         </div>
                         <button type="submit" class="btn">Registrarse</button>
                     </form>
+                    <div id="signup-error" class="error-message" style="color: red; display: none;"></div>
                     <p class="auth-switch">¿Ya tienes cuenta? <a href="#" id="show-login">Inicia sesión aquí</a></p>
                 </div>
             </div>
@@ -302,13 +325,14 @@
         <span id="cart-count" class="cart-count">0</span>
     </div>
 
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/app.js"></script>
+    <script type="module" src="js/auth.js"></script>
     <script src="js/navigation.js"></script>
-    <script src="js/carousel.js"></script>
+    <script type="module" src="js/cart.js"></script>
+    <script type="module" src="js/carousel.js"></script>
     <script src="js/menuData.js"></script>
     <script src="js/modal.js"></script>
-    <script src="js/cart.js"></script>
     <script src="js/script.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/googleAuth.js"></script>
 </body>
 </html>
