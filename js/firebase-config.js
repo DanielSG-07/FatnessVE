@@ -1,5 +1,5 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 
 // Your web app's Firebase configuration
@@ -14,6 +14,8 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+// This pattern prevents re-initialization
+const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
