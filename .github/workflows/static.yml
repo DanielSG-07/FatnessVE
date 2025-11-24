@@ -32,20 +32,21 @@ jobs:
 
       - name: Create Firebase config file
         run: |
-          touch js/firebase-config.js
-          echo "import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';" >> js/firebase-config.js
-          echo "import { getAuth } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';" >> js/firebase-config.js
-          echo "const firebaseConfig = {" >> js/firebase-config.js
-          echo "  apiKey: '${{ secrets.FIREBASE_API_KEY }}'," >> js/firebase-config.js
-          echo "  authDomain: '${{ secrets.FIREBASE_AUTH_DOMAIN }}'," >> js/firebase-config.js
-          echo "  projectId: '${{ secrets.FIREBASE_PROJECT_ID }}'," >> js/firebase-config.js
-          echo "  storageBucket: '${{ secrets.FIREBASE_STORAGE_BUCKET }}'," >> js/firebase-config.js
-          echo "  messagingSenderId: '${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}'," >> js/firebase-config.js
-          echo "  appId: '${{ secrets.FIREBASE_APP_ID }}'," >> js/firebase-config.js
-          echo "  measurementId: '${{ secrets.FIREBASE_MEASUREMENT_ID }}'" >> js/firebase-config.js
-          echo "};" >> js/firebase-config.js
-          echo "const app = initializeApp(firebaseConfig);" >> js/firebase-config.js
-          echo "export const auth = getAuth(app);" >> js/firebase-config.js
+          cat <<EOF > js/firebase-config.js
+          import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+          import { getAuth } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+          const firebaseConfig = {
+            apiKey: "${{ secrets.FIREBASE_API_KEY }}",
+            authDomain: "${{ secrets.FIREBASE_AUTH_DOMAIN }}",
+            projectId: "${{ secrets.FIREBASE_PROJECT_ID }}",
+            storageBucket: "${{ secrets.FIREBASE_STORAGE_BUCKET }}",
+            messagingSenderId: "${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}",
+            appId: "${{ secrets.FIREBASE_APP_ID }}",
+            measurementId: "${{ secrets.FIREBASE_MEASUREMENT_ID }}"
+          };
+          const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+          export const auth = getAuth(app);
+          EOF
       
       - name: Setup Pages
         uses: actions/configure-pages@v5
