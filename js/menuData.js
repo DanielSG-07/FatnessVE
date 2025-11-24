@@ -1,6 +1,11 @@
 // Menu data with ingredients for each item
 const menuData = {
   items: {
+    //Entradas
+    "Tequeños": {
+      baseIngredients: ["3 Unidades de Tequeños", "Salsa Bic Mac"]
+    },
+    //HAMBURGESAS
     "CHESSE BURGUER": {
       baseIngredients: ["Croqueta de carne 180 gr", "tocineta", "queso amarillo", "cebolla morada o caramelizada", "tomate", "lechuga", "salsas"],
       optionalIngredients: [
@@ -29,8 +34,8 @@ const menuData = {
         { name: "Sin cebolla", price: 0 }
       ]
     },
-    "CHICKEN BURGUER": {
-      baseIngredients: ["Pechuga de pollo asada 200 gr", "champiñones en crema", "queso amarillo", "cebolla morada o caramelizada", "tomate", "lechuga", "salsas"],
+    "CRISPY BURGER": {
+      baseIngredients: ["200gr de pollo crispy", "Salsa de Pepinillos", "Queso Crema con Cebollin", "tomate", "lechuga", "salsas"],
       optionalIngredients: [
         { name: "Extra queso", price: 0.50 },
         { name: "Sin champiñones", price: 0 },
@@ -59,22 +64,11 @@ const menuData = {
         { name: "Sin lechuga", price: 0 }
       ]
     },
-    "CHESSE BURGUER DOBLE": {
-      baseIngredients: ["Doble croqueta de carne 360 gr", "tocineta", "doble queso", "cebolla morada o caramelizada", "tomate", "lechuga", "salsas"],
+    "SMASH BURGER": {
+      baseIngredients: ["Doble o Triple de croqueta de Res (SMASH)", "Queso Amarillo", "Pepinillo", "Tocineta", "tomate", "lechuga", "salsa Americana"],
       optionalIngredients: [
         { name: "Extra queso", price: 0.50 },
         { name: "Extra tocineta", price: 1.00 },
-        { name: "Sin cebolla", price: 0 },
-        { name: "Sin tomate", price: 0 },
-        { name: "Sin lechuga", price: 0 }
-      ]
-    },
-    "DADDY BURGUER": {
-      baseIngredients: ["Pechuga de pollo asada 180 gr", "chuleta de cerdo ahumada 180 gr", "tocineta", "doble queso amarillo", "champiñones en crema", "cebolla morada o caramelizada", "tomate", "lechuga", "salsas"],
-      optionalIngredients: [
-        { name: "Extra queso", price: 0.50 },
-        { name: "Extra tocineta", price: 1.00 },
-        { name: "Sin champiñones", price: 0 },
         { name: "Sin cebolla", price: 0 },
         { name: "Sin tomate", price: 0 },
         { name: "Sin lechuga", price: 0 }
@@ -103,6 +97,7 @@ const menuData = {
         { name: "Sin lechuga", price: 0 }
       ]
     },
+    //PAPAS FRANCESAS
     "French Fries": {
       baseIngredients: ["Papas fritas"],
       optionalIngredients: [
@@ -124,6 +119,114 @@ const menuData = {
       baseIngredients: ["Malteada"],
       optionalIngredients: [
         { name: "Extra topping", price: 0.50 }
+      ]
+    },
+    "VIENA": {
+      baseIngredients: ["Salchicha de carne de res"," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas", " queso blanco o amarillo." ],
+      optionalIngredients: [
+        { name: "Extra queso", price: 0.50 },
+        { name: "Sin Cebolla", price: 0.50 }
+      ],
+      eleccionSalchicha: [
+        { name: "Salchicha Viena", price: 0.50 },
+        { name: "Salchica Alemana", price: 0.50 },
+        { name: "Salchica Chorifrito", price: 0.50 }
+      ]
+    },
+    "CHORIFRITO": {
+      baseIngredients: ["Chorizo ahumado de carne de cerdo y res"," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas", " queso blanco o amarillo." ],
+      optionalIngredients: [
+        { name: "Extra queso", price: 0.50 },
+        { name: "Sin Cebolla", price: 0.50 }
+      ],
+      eleccionSalchicha: [
+        { name: "Salchicha Viena", price: 0.50 },
+        { name: "Salchica Alemana", price: 0.50 },
+        { name: "Salchica Chorifrito", price: 0.50 }
+      ]
+    },
+    "ALEMANA": {
+      baseIngredients: ["Salchicha de carne de cerdo, ahumada"," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas", " queso blanco o amarillo." ],
+      optionalIngredients: [
+        { name: "Extra queso", price: 0.50 },
+        { name: "Sin Cebolla", price: 0.50 }
+      ],
+      eleccionSalchicha: [
+        { name: "Salchicha Viena", price: 0.50 },
+        { name: "Salchica Alemana", price: 0.50 },
+        { name: "Salchica Chorifrito", price: 0.50 }
+      ]
+    },
+    "ANTIOQUEÑO": {
+      baseIngredients: ["Chorizo de carne de cerdo y res, con especias naturales"," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas", " queso blanco o amarillo." ],
+      optionalIngredients: [
+        { name: "Extra queso", price: 0.50 },
+        { name: "Sin Cebolla", price: 0.50 }
+      ],
+      eleccionSalchicha: [
+        { name: "Salchicha Viena", price: 0.50 },
+        { name: "Salchica Alemana", price: 0.50 },
+        { name: "Salchica Chorifrito", price: 0.50 }
+      ]
+    },
+    "KOSACA": {
+      baseIngredients: ["Salchicha Picante"," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas", " queso blanco o amarillo." ],
+      optionalIngredients: [
+        { name: "Extra queso", price: 0.50 },
+        { name: "Sin Cebolla", price: 0.50 }
+      ],
+      eleccionSalchicha: [
+        { name: "Salchicha Viena", price: 0.50 },
+        { name: "Salchica Alemana", price: 0.50 },
+        { name: "Salchica Chorifrito", price: 0.50 }
+      ]
+    },
+     "SELVA NEGRA": {
+      baseIngredients: ["Chorizo jamonado"," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas", " queso blanco o amarillo." ],
+      optionalIngredients: [
+        { name: "Extra queso", price: 0.50 },
+        { name: "Sin Cebolla", price: 0.50 }
+      ],
+      eleccionSalchicha: [
+        { name: "Salchicha Viena", price: 0.50 },
+        { name: "Salchica Alemana", price: 0.50 },
+        { name: "Salchica Chorifrito", price: 0.50 }
+      ]
+    },
+     "POLACA": {
+      baseIngredients: ["Salchicha de carne de cerdo, con hierbas frescas, especias y semillas de mostaza"," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas", " queso blanco o amarillo." ],
+      optionalIngredients: [
+        { name: "Extra queso", price: 0.50 },
+        { name: "Sin Cebolla", price: 0.50 }
+      ],
+      eleccionSalchicha: [
+        { name: "Salchicha Viena", price: 0.50 },
+        { name: "Salchica Alemana", price: 0.50 },
+        { name: "Salchica Chorifrito", price: 0.50 }
+      ]
+    },
+    "BAVARIA": {
+      baseIngredients: ["Salchicha de carne y finas especias"," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas", " queso blanco o amarillo." ],
+      optionalIngredients: [
+        { name: "Extra queso", price: 0.50 },
+        { name: "Sin Cebolla", price: 0.50 }
+      ],
+      eleccionSalchicha: [
+        { name: "Salchicha Viena", price: 0.50 },
+        { name: "Salchica Alemana", price: 0.50 },
+        { name: "Salchica Chorifrito", price: 0.50 }
+      ]
+    },
+    "FATNESS": {
+      baseIngredients: [" salchicha polacas", "chorifrito", "huevo" ," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas", " queso blanco o amarillo." ],
+      optionalIngredients: [
+        { name: "Extra queso", price: 0.50 },
+        { name: "Sin Cebolla", price: 0.50 }
+      ],
+      eleccionSalchicha: [
+        { name: "Salchicha Viena", price: 0.50 },
+        { name: "Salchica Alemana", price: 0.50 },
+        { name: "Salchica Chorifrito", price: 0.50 }
       ]
     }
   }

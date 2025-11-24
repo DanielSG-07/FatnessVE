@@ -118,12 +118,22 @@ if (addToCartBtn) {
     let additionalPrice = 0;
     const customizations = [];
 
-    // Calculate additional price from checked options
+    // Get selected radio button (for exclusive choices like sausage)
+    const selectedRadio = document.querySelector('#optional-list input[type="radio"]:checked');
+    if (selectedRadio) {
+      const price = parseFloat(selectedRadio.dataset.price);
+      if (!isNaN(price)) {
+        additionalPrice += price;
+        customizations.push(selectedRadio.nextElementSibling.textContent.split(' (+$')[0]);
+      }
+    }
+
+    // Get selected checkboxes (for optional extras)
     document.querySelectorAll('#optional-list input[type="checkbox"]:checked').forEach(checkbox => {
       const price = parseFloat(checkbox.dataset.price);
       if (!isNaN(price)) {
         additionalPrice += price;
-        customizations.push(checkbox.nextElementSibling.textContent.split(' (+$')[0]); // Get the name without price
+        customizations.push(checkbox.nextElementSibling.textContent.split(' (+$')[0]);
       }
     });
 

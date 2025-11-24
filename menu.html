@@ -5,12 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu - FATNESS</title>
     <link rel="stylesheet" href="css/style.css">
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://www.gstatic.com https://*.firebaseio.com https://*.googleapis.com https://apis.google.com; connect-src 'self' wss://*.firebaseio.com https://*.googleapis.com https://www.gstatic.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://*.firebaseio.com https://*.googleapis.com https://apis.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: http:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' wss://*.firebaseio.com https://*.googleapis.com https://www.gstatic.com https://*.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; frame-src https://www.google.com https://*.firebaseapp.com https://*.google.com;">
 </head>
 <body>
     <header>
         <nav class="navbar">
             <div class="left-section">
+                 <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
                 <a href="index.html" class="nav-branding">FATNESS</a>
                 <p id="user-welcome"></p>
             </div>
@@ -23,11 +28,6 @@
                         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" fill="#fff"/>
                     </svg>
                 </a>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
             </div>
             <ul class="nav-menu">
                 <li class="nav-item">
@@ -47,9 +47,50 @@
         <section id="menu" class="menu">
             <h2>Nuestro Menu</h2>
             <div class="category-tabs">
-                <button class="category-tab active" data-category="hamburguesas">hamburguesas</button>
-                <button class="category-tab" data-category="fries-sides">Papas y Frituras</button>
+                <button class="category-tab" data-category="Entradas">Entradas</button>
+                <button class="category-tab active" data-category="hamburguesas">Hamburguesas</button>
+                <button class="category-tab" data-category="HotDogs">Perros Calientes</button>
+                <button class="category-tab" data-category="Papas Francesas">Papas Francesas</button>
+                <button class="category-tab" data-category="KIDS">Kids</button>
                 <button class="category-tab" data-category="drinks">Bebidas</button>
+            </div>
+             <div class="menu-categories">
+                <div class="category" data-category="Entradas">
+                    <h3>Entradas</h3>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <img src="resourses\Entradas\Tequeños.png" alt="Tequeños">
+                            <h4>Tequeños</h4>
+                            <p>Servicio de tequeños de queso acompañados de salsa Big Mac.</p>
+                            <span class="price">$2.50</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-categories">
+                <div class="category" data-category="KIDS">
+                    <h3>Menu Kids</h3>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <img src="https://plus.unsplash.com/premium_photo-1683657860968-7474e7ea2d80?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Tender de Pollo">
+                            <h4> TENDERS DE POLLO</h4>
+                            <p>Servicio de tenders de pollo (tiras de pechuga empanizada) acompañados de papas a la francesa.</p>
+                            <span class="price">$3.50</span>
+                        </div>
+                        <div class="menu-item">
+                            <img src="https://plus.unsplash.com/premium_photo-1664478240248-ea8f37738e7c?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="MINI BURGERS">
+                            <h4> MINI BURGERS</h4>
+                            <p>Mini Hamburguesa a Elegir de las Categorias de Chesse burger, Pig burger, Chicken burger.</p>
+                            <span class="price">$3.50</span>
+                        </div>
+                         <div class="menu-item">
+                            <img src="https://images.unsplash.com/photo-1612392062093-b07f9f626f0c?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="MINI Hot-Dogs">
+                            <h4> MINI HOT DOGS</h4>
+                            <p>Mini Hot-Dog a Elegir de las Categorias de Viena, alemana o chorifrito. Kosaca, antioqueño, selva negra o polaca.</p>
+                            <span class="price">$3.50</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="menu-categories">
                 <div class="category active" data-category="hamburguesas">
@@ -75,8 +116,8 @@
                         </div>
                         <div class="menu-item">
                             <img src="https://www.recetario-cocina.com/archivosbd/hamburguesa-de-pollo-a-la-plancha.jpg" alt="CHICKEN BURGUER">
-                            <h4>CHICKEN BURGUER</h4>
-                            <p>Pechuga de pollo asada 200 gr, champiñones en crema, queso amarillo, cebolla morada o caramelizada, tomate, lechuga y salsas… </p>
+                            <h4>CRISPY BURGER</h4>
+                            <p>200gr de pollo crispy, salsa de pepinillos, y queso crema con cebollín.</p>
                             <span class="price">$7.30</span>
                         </div>
                         <div class="menu-item">
@@ -93,15 +134,9 @@
                         </div>
                         <div class="menu-item">
                             <img src="https://static.wixstatic.com/media/29cc8e_aaad1f9b690b4176a0cef213b971f787~mv2.jpg/v1/fill/w_568,h_378,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/29cc8e_aaad1f9b690b4176a0cef213b971f787~mv2.jpg">
-                            <h4>CHESSE BURGUER DOBLE</h4>
-                            <p>Doble croqueta de carne 360 gr, tocineta, doble queso, cebolla morada o caramelizada, tomate, lechuga y salsas…</p>
+                            <h4>SMASH BURGER</h4>
+                            <p> SMASH BURGER Doble o triple croqueta deres (SMASH) queso amarillo, pepinillos, tocineta, y salsa americana.</p>
                             <span class="price">$8.20</span>
-                        </div>
-                        <div class="menu-item">
-                            <img src="https://comedera.com/wp-content/uploads/sites/9/2025/04/hamburguesa-de-pollo-con-salsa-de-champinones.jpg" alt="DADDY BURGUER">
-                            <h4>DADDY BURGUER</h4>
-                            <p> Pechuga de pollo asada 180 gr, chuleta de cerdo ahumada 180 gr, tocineta, doble queso amarillo, champiñones en crema, cebolla morada o caramelizada, tomate, lechuga y salsas… </p>
-                            <span class="price">$9.20</span>
                         </div>
                         <div class="menu-item">
                             <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="FITNESS BURGUER">
@@ -117,31 +152,126 @@
                         </div>
                     </div>
                 </div>
-                <div class="category" data-category="fries-sides">
-                    <h3>Fries & Sides</h3>
+                <div class="category" data-category="Papas Francesas">
+                    <h3>Papas Francesas</h3>
                     <div class="menu-items">
                         <div class="menu-item">
                             <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="French Fries">
-                            <h4>French Fries</h4>
-                            <p>Crispy golden fries, perfect with any meal.</p>
+                            <h4>CLÁSICAS</h4>
+                            <p>Servicio de papas con sal.</p>
                             <span class="price">$3.99</span>
                         </div>
                         <div class="menu-item">
-                            <img src="https://images.unsplash.com/photo-1639024471283-03518883512d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&fm=jpg&q=60&w=3000" alt="Onion Rings">
-                            <h4>Onion Rings</h4>
-                            <p>Crispy battered onion rings.</p>
+                            <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="French Fries">
+                            <h4>CHEDDAR</h4>
+                            <p>Servicio de papas con queso cheddar.</p>
+                            <span class="price">$3.99</span>
+                        </div>
+                        <div class="menu-item">
+                            <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="French Fries">
+                            <h4>SALCHICHA</h4>
+                            <p>Servicio de papas con salchicha (viena, alemana o chorifrito).</p>
+                            <span class="price">$3.99</span>
+                        </div>
+                        <div class="menu-item">
+                            <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="French Fries">
+                            <h4>SALCHICHA Y CHEDDAR</h4>
+                            <p>Servicio de papas con salchicha y queso cheddar. </p>
+                            <span class="price">$3.99</span>
+                        </div>
+                        <div class="menu-item">
+                            <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="French Fries">
+                            <h4>GRINGAS</h4>
+                            <p>Servicio de papas con queso cheddar, tocineta y maíz. </p>
+                            <span class="price">$3.99</span>
+                        </div>
+                        <div class="menu-item">
+                            <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="French Fries">
+                            <h4>POLLO Y CHEDDAR</h4>
+                            <p>Servicio de papas con trozos de pechuga asada y queso cheddar. </p>
+                            <span class="price">$3.99</span>
+                        </div>
+                        <div class="menu-item">
+                            <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="French Fries">
+                            <h4>FATNESS (3-4 PERSONAS)</h4>
+                            <p>Servicio de papas con 180gr de res (croqueta o mechada), 200gr de chuleta ahumada, 200gr de pechuga, salchicha polaca, chorizo antioqueño, queso cheddar, maíz y tocineta. </p>
+                            <span class="price">$3.99</span>
+                        </div>
+                        <div class="menu-item">
+                            <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="1/2 Fatness">
+                            <h4>½ FATNESS (1-2 PERSONAS)</h4>
+                            <p>Servicio de papas con 90gr de res (croqueta o mechada), 100gr de chuleta ahumada, 100gr de pechuga, salchicha polaca, chorizo antioqueño, queso cheddar, maíz y tocineta.</p>
                             <span class="price">$4.99</span>
                         </div>
                     </div>
                 </div>
-                <div class="category" data-category="drinks">
-                    <h3>Drinks</h3>
+                <div class="category" data-category="HotDogs">
+                    <h3>Perros Calientes</h3>
                     <div class="menu-items">
                         <div class="menu-item">
-                            <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Soda">
-                            <h4>Soda</h4>
-                            <p>Refreshing carbonated drinks.</p>
-                            <span class="price">$2.49</span>
+                            <img src="https://plus.unsplash.com/premium_photo-1731060034920-6c10381d7731?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="VIENA">
+                            <h4>VIENA</h4>
+                            <p> Salchicha de carne de res.</p>
+                            <span class="price">$3.50</span>
+                        </div>
+                         <div class="menu-item">
+                            <img src="https://plus.unsplash.com/premium_photo-1731060034920-6c10381d7731?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="CHORIFRITO">
+                            <h4>CHORIFRITO</h4>
+                            <p> Chorizo ahumado de carne de cerdo y res.</p>
+                            <span class="price">$3.50</span>
+                        </div>
+                         <div class="menu-item">
+                            <img src="https://plus.unsplash.com/premium_photo-1731060034920-6c10381d7731?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="ALEMANA">
+                            <h4>ALEMANA</h4>
+                            <p> Salchicha de carne de cerdo,ahumada.</p>
+                            <span class="price">$3.50</span>
+                        </div>
+                         <div class="menu-item">
+                            <img src="https://plus.unsplash.com/premium_photo-1731060034920-6c10381d7731?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="ANTIOQUEÑO">
+                            <h4>ANTIOQUEÑO</h4>
+                            <p> Chorizo de carne de cerdo y res, con especias naturales (pimentón, ají...).</p>
+                            <span class="price">$3.50</span>
+                        </div>
+                         <div class="menu-item">
+                            <img src="https://plus.unsplash.com/premium_photo-1731060034920-6c10381d7731?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=" KOSACA">
+                            <h4> KOSACA</h4>
+                            <p>  Salchicha Picante.</p>
+                            <span class="price">$3.50</span>
+                        </div>
+                         <div class="menu-item">
+                            <img src="https://plus.unsplash.com/premium_photo-1731060034920-6c10381d7731?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=" SELVA NEGRA">
+                            <h4> SELVA NEGRA </h4>
+                            <p>  Chorizo jamonado.</p>
+                            <span class="price">$3.50</span>
+                        </div>
+                         <div class="menu-item">
+                            <img src="https://plus.unsplash.com/premium_photo-1731060034920-6c10381d7731?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=" POLACA">
+                            <h4> POLACA </h4>
+                            <p>  Salchicha de carne de cerdo, con hierbas frescas, especias y semillas de mostaza.</p>
+                            <span class="price">$3.50</span>
+                        </div>
+                        <div class="menu-item">
+                            <img src="https://plus.unsplash.com/premium_photo-1731060034920-6c10381d7731?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=" BAVARIA">
+                            <h4> BAVARIA </h4>
+                            <p>  Salchicha de carne y finas especias.</p>
+                            <span class="price">$3.50</span>
+                        </div>
+                        <div class="menu-item">
+                            <img src="https://plus.unsplash.com/premium_photo-1731060034920-6c10381d7731?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=" FATNESS">
+                            <h4> FATNESS </h4>
+                            <p>  Perro caliente con salchicha polaca, chorifrito y huevo.</p>
+                            <span class="price">$3.50</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="category" data-category="drinks">
+                    <h3>Bebidas</h3>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <img src="https://media.licoresmundiales.com/media/catalog/product/cache/521bfa0199cf24b54354aeac7a407001/0/0/001-012-014.jpg" alt="Breeze">
+                            <h4>Vodka Breeze Ice</h4>
+                            <p>Bebida de Vodka Sabor Guarana 0.27Lt</p>
+                            <span class="price">$3.00</span>
                         </div>
                         <div class="menu-item">
                             <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687" alt="Milkshake">

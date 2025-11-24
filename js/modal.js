@@ -50,25 +50,62 @@ function populateIngredients(itemTitle) {
     baseList.appendChild(li);
   });
 
-  // Optional ingredients
+  // Optional ingredients and choices
   optionalList.innerHTML = '';
-  currentItemData.optionalIngredients.forEach(option => {
-    const div = document.createElement('div');
-    div.className = 'ingredient-option';
 
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.id = `option-${option.name.replace(/\s+/g, '-').toLowerCase()}`;
-    checkbox.dataset.price = option.price;
+  // Exclusive choices (e.g., sausage type) rendered as radio buttons
+  if (currentItemData.eleccionSalchicha && currentItemData.eleccionSalchicha.length > 0) {
+    const title = document.createElement('h5');
+    title.textContent = 'Elige la Salchicha';
+    optionalList.appendChild(title);
 
-    const label = document.createElement('label');
-    label.htmlFor = checkbox.id;
-    label.textContent = `${option.name}${option.price > 0 ? ` (+$${option.price.toFixed(2)})` : ''}`;
+    currentItemData.eleccionSalchicha.forEach((option, index) => {
+      const div = document.createElement('div');
+      div.className = 'ingredient-option';
 
-    div.appendChild(checkbox);
-    div.appendChild(label);
-    optionalList.appendChild(div);
-  });
+      const radio = document.createElement('input');
+      radio.type = 'radio';
+      radio.name = 'salchicha-choice'; // Shared name makes them exclusive
+      radio.id = `option-${option.name.replace(/\s+/g, '-').toLowerCase()}`;
+      radio.dataset.price = option.price;
+      if (index === 0) {
+        radio.checked = true; // Default to the first option
+      }
+
+      const label = document.createElement('label');
+      label.htmlFor = radio.id;
+      label.textContent = `${option.name}${option.price > 0 ? ` (+$${option.price.toFixed(2)})` : ''}`;
+
+      div.appendChild(radio);
+      div.appendChild(label);
+      optionalList.appendChild(div);
+    });
+  }
+
+  // Optional add-ons rendered as checkboxes
+  if (currentItemData.optionalIngredients && currentItemData.optionalIngredients.length > 0) {
+    const title = document.createElement('h5');
+    title.textContent = 'Extras Opcionales';
+    optionalList.appendChild(title);
+
+    currentItemData.optionalIngredients.forEach(option => {
+      const div = document.createElement('div');
+      div.className = 'ingredient-option';
+
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.id = `option-${option.name.replace(/\s+/g, '-').toLowerCase()}`;
+      checkbox.dataset.price = option.price;
+
+      const label = document.createElement('label');
+      label.htmlFor = checkbox.id;
+      label.textContent = `${option.name}${option.price > 0 ? ` (+$${option.price.toFixed(2)})` : ''}`;
+
+      div.appendChild(checkbox);
+      div.appendChild(label);
+      optionalList.appendChild(div);
+    });
+  }
 }
 
 // Close modal
