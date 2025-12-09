@@ -51,12 +51,15 @@ if (cartCount) {
 }
 
 // Helper function to find item in cart (made global for use in other scripts)
-window.findCartItem = function(title, customizations) {
+window.findCartItem = function(title, customizations, sabor, brand, presentation) {
   return cart.findIndex(cartItem =>
     cartItem &&
     cartItem.item &&
     typeof cartItem.item === 'object' &&
     cartItem.item.title === title &&
+    cartItem.item.sabor === sabor &&
+    cartItem.item.brand === brand &&
+    cartItem.item.presentation === presentation &&
     Array.isArray(cartItem.item.customizations) &&
     Array.isArray(customizations) &&
     cartItem.item.customizations.length === customizations.length &&
@@ -117,24 +120,46 @@ if (addToCartBtn) {
 
     let additionalPrice = 0;
     const customizations = [];
+    let sabor = '';
+    let brand = '';
+    let presentation = '';
 
-    // Get selected radio button (for exclusive choices like sausage)
-    const selectedRadio = document.querySelector('#optional-list input[type="radio"]:checked');
-    if (selectedRadio) {
-      const price = parseFloat(selectedRadio.dataset.price);
-      if (!isNaN(price)) {
-        additionalPrice += price;
-        customizations.push(selectedRadio.nextElementSibling.textContent.split(' (+$')[0]);
-      }
+    // Handle brand selection
+    const brandButton = document.querySelector('.brand-button.selected');
+    if (brandButton) {
+      brand = brandButton.dataset.brand;
     }
+
+    // Handle presentation/size selection
+    const selectedPresentacion = document.querySelector('input[name="presentacion-choice"]:checked');
+    if (selectedPresentacion) {
+        const presentacionName = selectedPresentacion.nextElementSibling.textContent.split(' (+$')[0];
+        const presentacionPrice = parseFloat(selectedPresentacion.dataset.price) || 0;
+        additionalPrice += presentacionPrice;
+        presentation = presentacionName;
+    }
+
+    // Get all selected radio buttons for exclusive choices
+    document.querySelectorAll('#optional-list input[type="radio"]:checked').forEach(radio => {
+      const price = parseFloat(radio.dataset.price) || 0;
+      if (radio.name !== 'presentacion-choice') { // Price for presentation is already added
+        additionalPrice += price;
+      }
+
+      if (radio.name === 'sabor-choice') {
+        sabor = radio.nextElementSibling.textContent.split(' (+$')[0];
+      } else if (radio.name !== 'presentacion-choice') {
+        customizations.push(radio.nextElementSibling.textContent.split(' (+$')[0]);
+      }
+    });
 
     // Get selected checkboxes (for optional extras)
     document.querySelectorAll('#optional-list input[type="checkbox"]:checked').forEach(checkbox => {
       const price = parseFloat(checkbox.dataset.price);
       if (!isNaN(price)) {
         additionalPrice += price;
-        customizations.push(checkbox.nextElementSibling.textContent.split(' (+$')[0]);
       }
+      customizations.push(checkbox.nextElementSibling.textContent.split(' (+$')[0]);
     });
 
     const item = {
@@ -142,23 +167,23 @@ if (addToCartBtn) {
       title: document.getElementById('modal-title').textContent,
       description: document.getElementById('modal-description').textContent,
       price: basePrice + additionalPrice,
-      customizations: customizations
+      customizations: customizations,
+      sabor: sabor,
+      brand: brand,
+      presentation: presentation
     };
 
     // Check if item already exists in cart
-    const existingIndex = findCartItem(item.title, customizations);
+    const existingIndex = findCartItem(item.title, customizations, item.sabor, item.brand, item.presentation);
     if (existingIndex !== -1) {
-      // Increment quantity
       cart[existingIndex].quantity += 1;
     } else {
-      // Add new item with quantity 1
       cart.push({ item, quantity: 1 });
     }
 
     updateCartCount();
     saveCart();
 
-    // If cart is open, update the display
     if (cartDisplay && cartDisplay.style.display === 'block') {
       renderCart();
     }
@@ -237,6 +262,21 @@ function renderCart() {
       const cartItemDiv = document.createElement('div');
       cartItemDiv.className = 'cart-item';
 
+      let saborText = '';
+      if (item.sabor) {
+        saborText = `<p class="customizations">Sabor: ${item.sabor}</p>`;
+      }
+
+      let brandText = '';
+      if (item.brand) {
+        brandText = `<p class="customizations">Marca: ${item.brand}</p>`;
+      }
+
+      let presentationText = '';
+      if (item.presentation) {
+        presentationText = `<p class="customizations">Presentación: ${item.presentation}</p>`;
+      }
+
       let customizationsText = '';
       if (item.customizations && item.customizations.length > 0) {
         customizationsText = `<p class="customizations">Adicionales: ${item.customizations.join(', ')}</p>`;
@@ -253,6 +293,9 @@ function renderCart() {
           <div class="cart-item-info">
             <h4>${item.title}</h4>
             <p>${priceText}</p>
+            ${saborText}
+            ${brandText}
+            ${presentationText}
             ${customizationsText}
           </div>
         </div>
@@ -390,6 +433,15 @@ if (checkoutBtn) {
         message += `   Precio: ~$${item.originalPrice.toFixed(2)}~ $${item.price.toFixed(2)}\n`;
       } else {
         message += `   Precio: $${item.price.toFixed(2)}\n`;
+      }
+      if (item.brand) {
+        message += `   Marca: ${item.brand}\n`;
+      }
+      if (item.presentation) {
+        message += `   Presentación: ${item.presentation}\n`;
+      }
+      if (item.sabor) {
+        message += `   Sabor: ${item.sabor}\n`;
       }
       if (item.customizations && item.customizations.length > 0) {
         message += `   Adicionales: ${item.customizations.join(', ')}\n`;

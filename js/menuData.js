@@ -105,22 +105,150 @@ const menuData = {
         { name: "Con tocineta", price: 1.00 }
       ]
     },
-    "Onion Rings": {
-      baseIngredients: ["Aros de cebolla"],
+    //BEBIDAS
+    "Merengadas": {
+      baseIngredients: ["Malteada a base de leche, Frutas"],
       optionalIngredients: [
-        { name: "Con salsa", price: 0.50 }
+        { name: "Extra topping", price: 0.50 },
+        { name: "Agrandar Bebida", price: 0.50}
+      ],
+      eleccionSabor: [
+        { name: "Fresa"},
+        { name: "Piña",},
+        { name: "Mango"},
+        { name: "Parchita"},
+        { name: "Mora"}
       ]
     },
-    "Soda": {
-      baseIngredients: ["Refresco"],
-      optionalIngredients: []
-    },
-    "Milkshake": {
-      baseIngredients: ["Malteada"],
+     "Bebidas Naturales": {
+      baseIngredients: ["Malteada a base de Agua, Frutas"],
       optionalIngredients: [
-        { name: "Extra topping", price: 0.50 }
+        { name: "Agrandar Bebida", price: 0.50 }
+      ],
+      eleccionSabor: [
+        { name: "Fresa"},
+        { name: "Piña",},
+        { name: "Mango"},
+        { name: "Parchita"},
+        { name: "Limonada"},
+        { name: "Mora"}
       ]
     },
+    "Frappe": {
+      baseIngredients: ["Malteada a base de Agua, Frutas"],
+      optionalIngredients: [
+        { name: "Agrandar Bebida", price: 0.50 }
+      ],
+      eleccionSabor: [
+        { name: "Fresa"},
+        { name: "Piña",},
+        { name: "Mango"},
+        { name: "Parchita"},
+        { name: "Mora"}
+      ]
+    },
+    
+     "Refresco": {
+      baseIngredients: ["Refresco a Eleccion de Presentacion"],
+      optionalIngredients: [],
+      eleccionMarca: [
+        { name: "Coca-cola" },
+        { name: "Pepsi" },
+        { name: "Chinotto"},
+        { name: "Seven-Up"},
+        { name: "Frescolita"}
+      ],
+      eleccionPresentacion: [
+        { name: "1Lt", price: 0 },
+        { name: "1.5Lts", price: 0.50 },
+        { name: "2Lts", price: 1.00 }
+      ]
+    },
+    "Toddy": {
+      baseIngredients: ["Bebida Chocolatada Toddy","Base de leche Completa"],
+      optionalIngredients: [
+        { name: "Agrandar Bebida", price: 0.50 }
+      ]
+    },
+     "Vodka Breeze Ice": {
+      baseIngredients: ["Bebida de Vodka Sabor Guarana","Presentacion de 0.27lts"]
+      
+    },
+     "Cerveza": {
+      baseIngredients: ["Vaso de Cerveza Fria","Hielo"],
+      eleccionMarca: [
+        { name : "Polar", price: 0 },
+        { name : "Zulia", price: 0 },
+        { name : "Solera", price: 0 }
+      ],
+      optionalIngredients: [
+        { name: "Agrandar Bebida", price: 0.50 }
+      ]
+    },
+     "Nestea": {
+      baseIngredients: ["Vaso de Nestea"],
+      eleccionSabor:[
+        {name: "Sabor Original"},
+        {name: "Con Frutas"}
+      ],
+        optionalIngredients: [
+        { name: "Agrandar Bebida", price: 0.50 }
+      ]
+      
+    },
+    "Limonada de Coco": {
+      baseIngredients: ["Limonada","Agua de Coco"],
+        optionalIngredients: [
+        { name: "Agrandar Bebida", price: 0.50 }
+      ]
+    },
+    //Cocteles
+    "Gin Tonic Frutos Rojos": {
+      baseIngredients: ["Ginebra","Soda","Limon","Frutos Rojos","Hielo"]
+    },
+    "Mojito Clasico o Kiwi": {
+      baseIngredients: ["Ron Blanco","Azucar","Limon","Chinotto","Hielo","Hierba Buena o Kiwi"],
+      eleccionSabor: [
+        {name: "Hierba Buena"},
+        {name: "Kiwi"}
+      ]
+    },
+    "Daiquirí Mango o Fresa": {
+      baseIngredients: ["Ron Blanco","Azucar","Limon","Chinotto","Hielo","Mango o Fresa"],
+      eleccionSabor: [
+        {name: "Mango"},
+        {name: "Fresa"}
+      ]
+    },
+    "Piña Colada": {
+      baseIngredients: ["Ron Blanco","Hielo","Piña","Licor de Coco","Crema de Coco","Leche Condensada"]
+    },
+    "Blue Margarita": {
+      baseIngredients: ["Tequila","Blue Curacao","Triple Sec","Hielo","limon","Azucar"]
+    },
+    "Sangria con Frutas": {
+      baseIngredients: ["Sangria","Trozos de Fresa","Trozos de Piña","Trozos de Mango","Trozos de Manzana"]
+    },
+    "Polvo de Medianoche": {
+      baseIngredients: ["Licor de Café","Tequila","Hielo","Vodka","Canela"]
+    },
+    "Chelada Maracuya": {
+      baseIngredients: ["Cerveza","Hielo","Limon","Parchita","Sal"]
+    },
+    "Cuba Libre": {
+      baseIngredients: ["Ron Dorado","Hielo","Refresco de Cola","Limon"]
+    },
+    "Sneyk Pen": {
+      baseIngredients: ["Whisky","Licor de Café","Hielo","Crema de Coco o Crema de Leche"],
+        eleccionSabor: [
+          { name: "Crema de Coco"},
+          { name: "Crema de Leche"}
+        ]
+    },
+    "Delta Sunset": {
+      baseIngredients: ["Sambuca","Triple Sec","Hielo","Limon"]
+    },
+    //PERROS CALIENTES
     "VIENA": {
       baseIngredients: ["Salchicha de carne de res"," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas", " queso blanco o amarillo." ],
       optionalIngredients: [

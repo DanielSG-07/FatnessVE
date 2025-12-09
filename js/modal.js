@@ -82,6 +82,97 @@ function populateIngredients(itemTitle) {
     });
   }
 
+  // Exclusive choices (e.g., brand type) rendered as buttons
+  if (currentItemData.eleccionMarca && currentItemData.eleccionMarca.length > 0) {
+    const title = document.createElement('h5');
+    title.textContent = 'Elige la Marca';
+    optionalList.appendChild(title);
+
+    const brandContainer = document.createElement('div');
+    brandContainer.className = 'brand-container';
+    optionalList.appendChild(brandContainer);
+
+    currentItemData.eleccionMarca.forEach((option, index) => {
+      const brandButton = document.createElement('div');
+      brandButton.className = 'brand-button';
+      brandButton.textContent = option.name;
+      brandButton.dataset.brand = option.name;
+
+      if (index === 0) {
+        brandButton.classList.add('selected');
+      }
+
+      brandButton.addEventListener('click', () => {
+        // Remove selected from all brand buttons
+        document.querySelectorAll('.brand-button').forEach(btn => {
+          btn.classList.remove('selected');
+        });
+        // Add selected to the clicked one
+        brandButton.classList.add('selected');
+      });
+
+      brandContainer.appendChild(brandButton);
+    });
+  }
+
+  // Exclusive choices (e.g., size type) rendered as radio buttons
+  if (currentItemData.eleccionPresentacion && currentItemData.eleccionPresentacion.length > 0) {
+    const title = document.createElement('h5');
+    title.textContent = 'Elige la Presentación';
+    optionalList.appendChild(title);
+
+    currentItemData.eleccionPresentacion.forEach((option, index) => {
+      const div = document.createElement('div');
+      div.className = 'ingredient-option';
+
+      const radio = document.createElement('input');
+      radio.type = 'radio';
+      radio.name = 'presentacion-choice'; // Shared name makes them exclusive
+      radio.id = `option-${option.name.replace(/\s+/g, '-').toLowerCase()}`;
+      radio.dataset.price = option.price;
+      if (index === 0) {
+        radio.checked = true; // Default to the first option
+      }
+
+      const label = document.createElement('label');
+      label.htmlFor = radio.id;
+      label.textContent = `${option.name}${option.price > 0 ? ` (+$${option.price.toFixed(2)})` : ''}`;
+
+      div.appendChild(radio);
+      div.appendChild(label);
+      optionalList.appendChild(div);
+    });
+  }
+
+  // Exclusive choices (e.g., flavor type) rendered as radio buttons
+  if (currentItemData.eleccionSabor && currentItemData.eleccionSabor.length > 0) {
+    const title = document.createElement('h5');
+    title.textContent = 'Elige el Sabor';
+    optionalList.appendChild(title);
+
+    currentItemData.eleccionSabor.forEach((option, index) => {
+      const div = document.createElement('div');
+      div.className = 'ingredient-option';
+
+      const radio = document.createElement('input');
+      radio.type = 'radio';
+      radio.name = 'sabor-choice'; // Shared name makes them exclusive
+      radio.id = `option-${option.name.replace(/\s+/g, '-').toLowerCase()}`;
+      radio.dataset.price = option.price || 0;
+      if (index === 0) {
+        radio.checked = true; // Default to the first option
+      }
+
+      const label = document.createElement('label');
+      label.htmlFor = radio.id;
+      label.textContent = `${option.name}${radio.dataset.price > 0 ? ` (+$${parseFloat(radio.dataset.price).toFixed(2)})` : ''}`;
+
+      div.appendChild(radio);
+      div.appendChild(label);
+      optionalList.appendChild(div);
+    });
+  }
+
   // Optional add-ons rendered as checkboxes
   if (currentItemData.optionalIngredients && currentItemData.optionalIngredients.length > 0) {
     const title = document.createElement('h5');
