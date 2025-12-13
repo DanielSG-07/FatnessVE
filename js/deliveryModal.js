@@ -53,7 +53,17 @@ function sendWhatsAppMessage(option) {
         const itemTotal = item.price * quantity;
         total += itemTotal;
 
-        message += `*${item.title}* (x${quantity})\n`;
+        const papasFrancesasItems = ["CLÁSICAS", "CHEDDAR", "SALCHICHA", "SALCHICHA Y CHEDDAR", "GRINGAS", "POLLO Y CHEDDAR", "FATNESS (3-4 PERSONAS)", "½ FATNESS (1-2 PERSONAS)"];
+        let title = item.title;
+        let tipoText = '';
+
+        if (papasFrancesasItems.includes(item.title)) {
+            title = "Papas Francesas";
+            tipoText = `- Tipo: ${item.title}\n`;
+        }
+
+        message += `*${title}* (x${quantity})\n`;
+        message += tipoText;
         if (item.sabor) message += `- Sabor: ${item.sabor}\n`;
         if (item.brand) message += `- Marca: ${item.brand}\n`;
         if (item.presentation) message += `- Presentación: ${item.presentation}\n`;

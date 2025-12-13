@@ -159,9 +159,10 @@ const menuData = {
         { name: "Frescolita"}
       ],
       eleccionPresentacion: [
-        { name: "1Lt", price: 0 },
-        { name: "1.5Lts", price: 0.50 },
-        { name: "2Lts", price: 1.00 }
+        { name: "450ml", price: 0 },
+        { name: "1Lt", price: 0.50 },
+        { name: "1.5Lts", price: 1.00 },
+        { name: "2Lts", price: 1.50 }
       ]
     },
     "Toddy": {
@@ -356,6 +357,98 @@ const menuData = {
         { name: "Salchica Alemana", price: 0.50 },
         { name: "Salchica Chorifrito", price: 0.50 }
       ]
-    }
+    },
+    //MENU KIDS
+    "MINI HOT DOGS": {
+      baseIngredients: ["Pan","Salchicha a Eleccion de Presentacion","Vegetales","Salsas","Papas Fritas"],
+      eleccionPresentacion: [
+        {name: "Viena"},
+        {name: "Alemana"},
+        {name: "Chorifrito"},
+        {name: "Kosaca"},
+        {name: "Antioqueño"},
+        {name: "Selva Negra"},
+        {name: "Polaca"}
+      ],
+      optionalIngredients: [
+        { name: "Extra queso", price: 0.50 },
+        { name: "Sin Cebolla", price: 0.50 }
+      ]
+    },
+    "MINI BURGERS":{
+      baseIngredients: ["Carnes Segun Presentacion", "queso amarillo", "cebolla Morada", "tomate", "lechuga", "salsas","Pan Wooper"],
+      eleccionPresentacion: [
+        {name: "Cheese Burger"},
+        {name: "Pig Burger"},
+        {name: "Chicken Burger"}
+      ],
+       optionalIngredients: [
+        { name: "Extra queso", price: 0.50 },
+        { name: "Cebolla Caramelizada", price: 0.50 },
+        { name: "Sin Cebolla" },
+        { name: "Sin Tomate" },
+        { name: "Sin Lechuga" }
+      ]
+    },
+    "TENDERS DE POLLO": {
+      baseIngredients: ["Pechuga de Pollo Empanizado","Papas a la francesa"]
+    },
+    //PAPAS A LA FRANCESA
+    "CLÁSICAS":{
+      baseIngredients: ["160gr de Papas Fritas"]
+    },
+    "CHEDDAR":{
+      baseIngredients: ["160gr de Papas Fritas","Queso Cheddar Fundido"]
+    },
+    "SALCHICHA":{
+      baseIngredients: ["160gr de Papas Fritas","Trozos de Salchicha a Eleccion"],
+      eleccionSalchicha: [
+        {name: "Viena"},
+        {name : "Alemana"},
+        {name: "Chorifrito"}
+      ]
+    },
+    "SALCHICHA Y CHEDDAR":{
+      baseIngredients: ["160gr de Papas Fritas","Trozos de Salchicha a Eleccion", "Queso Cheddar Fundido"],
+      eleccionSalchicha: [
+        {name: "Viena"},
+        {name : "Alemana"},
+        {name: "Chorifrito"}
+      ]
+    },
+    "GRINGAS":{
+      baseIngredients: ["160gr de Papas Fritas","Queso Cheddar Fundido","Tocineta","Maiz"]
+    },
+    "POLLO Y CHEDDAR": {
+      baseIngredients: ["160gr de Papas Fritas","Trozos de Pechuga Asada","Queso Cheddar Fundido"]
+    },
+    "FATNESS (3-4 PERSONAS)": {
+      baseIngredients: ["160gr de Papas Fritas","180gr de Carne de Res Segun presentacion","200gr de Chuleta Ahumada","200gr de Pechuga",
+        "Salchicha a Eleccion","Queso Cheddar","Maiz","Tocineta"],
+       eleccionPresentacion: [
+        {name: "Carne en Croqueta"},
+        {name: "Carne Mechada"}
+       ],
+       eleccionSalchicha: [
+        {name: "Polaca"},
+        {name: "Chorizo"},
+        {name: "Antioqueño"}
+       ]
+
+      },
+      "½ FATNESS (1-2 PERSONAS)": {
+      baseIngredients: ["80gr de Papas Fritas","90gr de Carne de Res Segun presentacion","100gr de Chuleta Ahumada","100gr de Pechuga",
+        "Salchicha a Eleccion","Queso Cheddar","Maiz","Tocineta"],
+       eleccionPresentacion: [
+        {name: "Carne en Croqueta"},
+        {name: "Carne Mechada"}
+       ],
+       eleccionSalchicha: [
+        {name: "Polaca"},
+        {name: "Chorizo"},
+        {name: "Antioqueño"}
+       ]
+
+      }
   }
 };

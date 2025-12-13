@@ -283,6 +283,15 @@ function renderCart() {
         customizationsText = `<p class="customizations">Adicionales: ${item.customizations.join(', ')}</p>`;
       }
 
+      let tipoText = '';
+      const papasFrancesasItems = ["CLÁSICAS", "CHEDDAR", "SALCHICHA", "SALCHICHA Y CHEDDAR", "GRINGAS", "POLLO Y CHEDDAR", "FATNESS (3-4 PERSONAS)", "½ FATNESS (1-2 PERSONAS)"];
+      let title = item.title;
+
+      if (papasFrancesasItems.includes(item.title)) {
+        title = "Papas Francesas";
+        tipoText = `<p class="customizations">Tipo: ${item.title}</p>`;
+      }
+
       let priceText = `$${item.price.toFixed(2)}`;
       if (item.isDiscounted && item.originalPrice) {
         priceText = `<span style="text-decoration: line-through; color: #ccc;">$${item.originalPrice.toFixed(2)}</span> $${item.price.toFixed(2)} <span style="color: #ff6b35; font-weight: bold;">(Descuento)</span>`;
@@ -292,8 +301,9 @@ function renderCart() {
         <div class="cart-item-left">
           <img src="${item.image}" alt="${item.title}" class="cart-item-image">
           <div class="cart-item-info">
-            <h4>${item.title}</h4>
+            <h4>${title}</h4>
             <p>${priceText}</p>
+            ${tipoText}
             ${saborText}
             ${brandText}
             ${presentationText}
