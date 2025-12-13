@@ -102,8 +102,15 @@ function addToCartFromCarousel(item) {
         window.renderCart();
       }
     }
-    // Mostrar notificación temporal por 1 segundo
-    const notification = document.createElement('div');
+    // Mostrar notificación temporal
+    let notification = document.querySelector('.cart-notification');
+    if (notification) {
+      clearTimeout(window.cartNotificationTimeout);
+      notification.remove();
+    }
+
+    notification = document.createElement('div');
+    notification.className = 'cart-notification';
     notification.textContent = 'Se ha adquirido la oferta';
     notification.style.position = 'fixed';
     notification.style.top = '50%';
@@ -117,8 +124,9 @@ function addToCartFromCarousel(item) {
     notification.style.fontSize = '1.2rem';
     notification.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
     document.body.appendChild(notification);
-    setTimeout(() => {
-      if (document.body.contains(notification)) {
+
+    window.cartNotificationTimeout = setTimeout(() => {
+      if (notification && document.body.contains(notification)) {
         document.body.removeChild(notification);
       }
     }, 1000);

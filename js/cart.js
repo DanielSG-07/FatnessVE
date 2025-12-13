@@ -1,3 +1,4 @@
+import { openDeliveryModal } from './deliveryModal.js';
 // Cart functionality
 let cart = [];
 window.cart = cart;
@@ -400,7 +401,7 @@ function renderCart() {
 }
 window.renderCart = renderCart; // Make global
 
-// Checkout functionality - Send order via WhatsApp
+// Checkout functionality - Open delivery options modal
 if (checkoutBtn) {
   checkoutBtn.addEventListener('click', () => {
     if (cart.length === 0) {
@@ -420,53 +421,6 @@ if (checkoutBtn) {
       return;
     }
 
-    const user = JSON.parse(storedUser);
-
-    let message = `Hola, Mi Nombre Es: ${user.name}. Me gustaría hacer el siguiente pedido:\n\n`;
-    let total = 0;
-
-    cart.forEach((cartItem, index) => {
-      const item = cartItem.item;
-      const quantity = cartItem.quantity;
-      message += `${index + 1}. ${item.title} (x${quantity})\n`;
-      if (item.isDiscounted && item.originalPrice) {
-        message += `   Precio: ~$${item.originalPrice.toFixed(2)}~ $${item.price.toFixed(2)}\n`;
-      } else {
-        message += `   Precio: $${item.price.toFixed(2)}\n`;
-      }
-      if (item.brand) {
-        message += `   Marca: ${item.brand}\n`;
-      }
-      if (item.presentation) {
-        message += `   Presentación: ${item.presentation}\n`;
-      }
-      if (item.sabor) {
-        message += `   Sabor: ${item.sabor}\n`;
-      }
-      if (item.customizations && item.customizations.length > 0) {
-        message += `   Adicionales: ${item.customizations.join(', ')}\n`;
-      }
-      message += '\n';
-      total += item.price * quantity;
-    });
-
-    message += `Total: $${total.toFixed(2)}\n\n`;
-    message += 'Gracias!';
-
-    // Encode the message for WhatsApp URL
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappURL = `https://wa.me/584247818441?text=${encodedMessage}`;
-
-    // Open WhatsApp with the message
-    window.open(whatsappURL, '_blank');
-
-    // Clear the cart after sending the order
-    cart = [];
-    updateCartCount();
-    saveCart();
-    renderCart();
-    if (cartDisplay) {
-      cartDisplay.style.display = 'none';
-    }
+    openDeliveryModal();
   });
 }
