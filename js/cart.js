@@ -285,10 +285,14 @@ function renderCart() {
 
       let tipoText = '';
       const papasFrancesasItems = ["CLÁSICAS", "CHEDDAR", "SALCHICHA", "SALCHICHA Y CHEDDAR", "GRINGAS", "POLLO Y CHEDDAR", "FATNESS (3-4 PERSONAS)", "½ FATNESS (1-2 PERSONAS)"];
+      const perrosCalientesItems = ["VIENA", "CHORIFRITO", "ALEMANA", "ANTIOQUEÑO", "KOSACA", "SELVA NEGRA", "POLACA", "BAVARIA", "FATNESS"];
       let title = item.title;
 
       if (papasFrancesasItems.includes(item.title)) {
         title = "Papas Francesas";
+        tipoText = `<p class="customizations">Tipo: ${item.title}</p>`;
+      } else if (perrosCalientesItems.includes(item.title)) {
+        title = "Perro Caliente";
         tipoText = `<p class="customizations">Tipo: ${item.title}</p>`;
       }
 

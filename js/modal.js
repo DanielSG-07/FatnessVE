@@ -1,3 +1,5 @@
+import { getAvailableDeliveryTypes } from './deliveryModal.js';
+
 // Modal functionality
 const modal = document.getElementById('item-modal');
 const closeModal = document.querySelector('.close-modal');
@@ -8,6 +10,7 @@ const modalPrice = document.getElementById('modal-price');
 const ingredientSection = document.getElementById('ingredient-section');
 const baseList = document.getElementById('base-list');
 const optionalList = document.getElementById('optional-list');
+const deliveryIcons = document.querySelectorAll('.delivery-icon-container');
 
 let currentItemData = null;
 
@@ -24,12 +27,26 @@ document.querySelectorAll('.menu-item').forEach(item => {
     modalDescription.textContent = description;
     modalPrice.textContent = price;
 
-    // Populate ingredients
+    // Populate ingredients and delivery icons
     populateIngredients(title);
+    updateDeliveryIcons(title);
 
     modal.style.display = 'flex';
   });
 });
+
+function updateDeliveryIcons(itemTitle) {
+    const availableTypes = getAvailableDeliveryTypes(itemTitle);
+
+    deliveryIcons.forEach(iconContainer => {
+        const iconType = iconContainer.dataset.type;
+        if (availableTypes.includes(iconType)) {
+            iconContainer.classList.add('available');
+        } else {
+            iconContainer.classList.remove('available');
+        }
+    });
+}
 
 // Populate ingredients based on item
 function populateIngredients(itemTitle) {
@@ -166,6 +183,35 @@ function populateIngredients(itemTitle) {
       const label = document.createElement('label');
       label.htmlFor = radio.id;
       label.textContent = `${option.name}${radio.dataset.price > 0 ? ` (+$${parseFloat(radio.dataset.price).toFixed(2)})` : ''}`;
+
+      div.appendChild(radio);
+      div.appendChild(label);
+      optionalList.appendChild(div);
+    });
+  }
+
+  // Exclusive choices (e.g., cheese type) rendered as radio buttons
+  if (currentItemData.eleccionQueso && currentItemData.eleccionQueso.length > 0) {
+    const title = document.createElement('h5');
+    title.textContent = 'Elige el Tipo de Queso';
+    optionalList.appendChild(title);
+
+    currentItemData.eleccionQueso.forEach((option, index) => {
+      const div = document.createElement('div');
+      div.className = 'ingredient-option';
+
+      const radio = document.createElement('input');
+      radio.type = 'radio';
+      radio.name = 'queso-choice'; // Shared name makes them exclusive
+      radio.id = `option-${option.name.replace(/\s+/g, '-').toLowerCase()}`;
+      radio.dataset.price = option.price;
+      if (index === 0) {
+        radio.checked = true; // Default to the first option
+      }
+
+      const label = document.createElement('label');
+      label.htmlFor = radio.id;
+      label.textContent = `${option.name}${option.price > 0 ? ` (+$${option.price.toFixed(2)})` : ''}`;
 
       div.appendChild(radio);
       div.appendChild(label);

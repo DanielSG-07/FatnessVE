@@ -3,7 +3,12 @@ const menuData = {
   items: {
     //Entradas
     "Tequeños": {
-      baseIngredients: ["3 Unidades de Tequeños", "Salsa Bic Mac"]
+      baseIngredients: ["3 Unidades de Tequeños", "Salsa Bic Mac"],
+      delivery: ["eat-in"]
+    },
+    "Brownie":{
+      baseIngredients: ["Brownie","Helado"],
+      delivery: ["eat-in"]
     },
     //HAMBURGESAS
     "CHESSE BURGUER": {
@@ -97,14 +102,6 @@ const menuData = {
         { name: "Sin lechuga", price: 0 }
       ]
     },
-    //PAPAS FRANCESAS
-    "French Fries": {
-      baseIngredients: ["Papas fritas"],
-      optionalIngredients: [
-        { name: "Con queso", price: 0.50 },
-        { name: "Con tocineta", price: 1.00 }
-      ]
-    },
     //BEBIDAS
     "Merengadas": {
       baseIngredients: ["Malteada a base de leche, Frutas"],
@@ -118,7 +115,8 @@ const menuData = {
         { name: "Mango"},
         { name: "Parchita"},
         { name: "Mora"}
-      ]
+      ],
+      delivery: ["eat-in"]
     },
      "Bebidas Naturales": {
       baseIngredients: ["Malteada a base de Agua, Frutas"],
@@ -132,7 +130,8 @@ const menuData = {
         { name: "Parchita"},
         { name: "Limonada"},
         { name: "Mora"}
-      ]
+      ],
+      delivery: ["eat-in"]
     },
     "Frappe": {
       baseIngredients: ["Malteada a base de Agua, Frutas"],
@@ -145,7 +144,8 @@ const menuData = {
         { name: "Mango"},
         { name: "Parchita"},
         { name: "Mora"}
-      ]
+      ],
+      delivery: ["eat-in"]
     },
     
      "Refresco": {
@@ -169,11 +169,12 @@ const menuData = {
       baseIngredients: ["Bebida Chocolatada Toddy","Base de leche Completa"],
       optionalIngredients: [
         { name: "Agrandar Bebida", price: 0.50 }
-      ]
+      ],
+      delivery: ["eat-in"]
     },
      "Vodka Breeze Ice": {
-      baseIngredients: ["Bebida de Vodka Sabor Guarana","Presentacion de 0.27lts"]
-      
+      baseIngredients: ["Bebida de Vodka Sabor Guarana","Presentacion de 0.27lts"],
+      delivery: ["eat-in", "pickup", "delivery"]
     },
      "Cerveza": {
       baseIngredients: ["Vaso de Cerveza Fria","Hielo"],
@@ -184,7 +185,8 @@ const menuData = {
       ],
       optionalIngredients: [
         { name: "Agrandar Bebida", price: 0.50 }
-      ]
+      ],
+      delivery: ["eat-in"]
     },
      "Nestea": {
       baseIngredients: ["Vaso de Nestea"],
@@ -194,168 +196,193 @@ const menuData = {
       ],
         optionalIngredients: [
         { name: "Agrandar Bebida", price: 0.50 }
-      ]
-      
+      ],
+      delivery: ["eat-in"]
     },
     "Limonada de Coco": {
       baseIngredients: ["Limonada","Agua de Coco"],
         optionalIngredients: [
         { name: "Agrandar Bebida", price: 0.50 }
-      ]
+      ],
+      delivery: ["eat-in"]
     },
     //Cocteles
     "Gin Tonic Frutos Rojos": {
-      baseIngredients: ["Ginebra","Soda","Limon","Frutos Rojos","Hielo"]
+      baseIngredients: ["Ginebra","Soda","Limon","Frutos Rojos","Hielo"],
+      delivery: ["eat-in"]
     },
     "Mojito Clasico o Kiwi": {
       baseIngredients: ["Ron Blanco","Azucar","Limon","Chinotto","Hielo","Hierba Buena o Kiwi"],
       eleccionSabor: [
         {name: "Hierba Buena"},
         {name: "Kiwi"}
-      ]
+      ],
+      delivery: ["eat-in"]
     },
     "Daiquirí Mango o Fresa": {
       baseIngredients: ["Ron Blanco","Azucar","Limon","Chinotto","Hielo","Mango o Fresa"],
       eleccionSabor: [
         {name: "Mango"},
         {name: "Fresa"}
-      ]
+      ],
+      delivery: ["eat-in"]
     },
     "Piña Colada": {
-      baseIngredients: ["Ron Blanco","Hielo","Piña","Licor de Coco","Crema de Coco","Leche Condensada"]
+      baseIngredients: ["Ron Blanco","Hielo","Piña","Licor de Coco","Crema de Coco","Leche Condensada"],
+      delivery: ["eat-in"]
     },
     "Blue Margarita": {
-      baseIngredients: ["Tequila","Blue Curacao","Triple Sec","Hielo","limon","Azucar"]
+      baseIngredients: ["Tequila","Blue Curacao","Triple Sec","Hielo","limon","Azucar"],
+      delivery: ["eat-in"]
     },
     "Sangria con Frutas": {
-      baseIngredients: ["Sangria","Trozos de Fresa","Trozos de Piña","Trozos de Mango","Trozos de Manzana"]
+      baseIngredients: ["Sangria","Trozos de Fresa","Trozos de Piña","Trozos de Mango","Trozos de Manzana"],
+      delivery: ["eat-in"]
     },
     "Polvo de Medianoche": {
-      baseIngredients: ["Licor de Café","Tequila","Hielo","Vodka","Canela"]
+      baseIngredients: ["Licor de Café","Tequila","Hielo","Vodka","Canela"],
+      delivery: ["eat-in"]
     },
     "Chelada Maracuya": {
-      baseIngredients: ["Cerveza","Hielo","Limon","Parchita","Sal"]
+      baseIngredients: ["Cerveza","Hielo","Limon","Parchita","Sal"],
+      delivery: ["eat-in"]
     },
     "Cuba Libre": {
-      baseIngredients: ["Ron Dorado","Hielo","Refresco de Cola","Limon"]
+      baseIngredients: ["Ron Dorado","Hielo","Refresco de Cola","Limon"],
+      delivery: ["eat-in"]
     },
     "Sneyk Pen": {
       baseIngredients: ["Whisky","Licor de Café","Hielo","Crema de Coco o Crema de Leche"],
         eleccionSabor: [
           { name: "Crema de Coco"},
           { name: "Crema de Leche"}
-        ]
+        ],
+      delivery: ["eat-in"]
     },
     "Delta Sunset": {
-      baseIngredients: ["Sambuca","Triple Sec","Hielo","Limon"]
+      baseIngredients: ["Sambuca","Triple Sec","Hielo","Limon"],
+      delivery: ["eat-in"]
+    },
+    //SHOTS
+    "TEQUILA":{
+      baseIngredients: ["Tequila","Limon","Sal"],
+      delivery: ["eat-in"]
+    },
+    "SUBMARINO":{
+      baseIngredients: ["Tequila","Cerveza"],
+      delivery: ["eat-in"]
+    },
+    "LAYERS":{
+      baseIngredients: ["Tequila","Blue Curacao","Granadina"],
+      delivery: ["eat-in"]
     },
     //PERROS CALIENTES
     "VIENA": {
-      baseIngredients: ["Salchicha de carne de res"," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas", " queso blanco o amarillo." ],
+      baseIngredients: ["Salchicha de carne de res"," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas" ],
+      eleccionQueso: [
+        { name: "Queso Amarillo", price: 0 },
+        { name: "Queso Blanco", price: 0 },
+        { name: "Queso Cheddar Fundido", price: 0.50 }
+      ],
       optionalIngredients: [
         { name: "Extra queso", price: 0.50 },
         { name: "Sin Cebolla", price: 0.50 }
-      ],
-      eleccionSalchicha: [
-        { name: "Salchicha Viena", price: 0.50 },
-        { name: "Salchica Alemana", price: 0.50 },
-        { name: "Salchica Chorifrito", price: 0.50 }
       ]
     },
     "CHORIFRITO": {
-      baseIngredients: ["Chorizo ahumado de carne de cerdo y res"," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas", " queso blanco o amarillo." ],
+      baseIngredients: ["Chorizo ahumado de carne de cerdo y res"," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas" ],
+      eleccionQueso: [
+        { name: "Queso Amarillo", price: 0 },
+        { name: "Queso Blanco", price: 0 },
+        { name: "Queso Cheddar Fundido", price: 0.50 }
+      ],
       optionalIngredients: [
         { name: "Extra queso", price: 0.50 },
         { name: "Sin Cebolla", price: 0.50 }
-      ],
-      eleccionSalchicha: [
-        { name: "Salchicha Viena", price: 0.50 },
-        { name: "Salchica Alemana", price: 0.50 },
-        { name: "Salchica Chorifrito", price: 0.50 }
       ]
     },
     "ALEMANA": {
-      baseIngredients: ["Salchicha de carne de cerdo, ahumada"," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas", " queso blanco o amarillo." ],
+      baseIngredients: ["Salchicha de carne de cerdo, ahumada"," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas" ],
+      eleccionQueso: [
+        { name: "Queso Amarillo", price: 0 },
+        { name: "Queso Blanco", price: 0 },
+        { name: "Queso Cheddar Fundido", price: 0.50 }
+      ],
       optionalIngredients: [
         { name: "Extra queso", price: 0.50 },
         { name: "Sin Cebolla", price: 0.50 }
-      ],
-      eleccionSalchicha: [
-        { name: "Salchicha Viena", price: 0.50 },
-        { name: "Salchica Alemana", price: 0.50 },
-        { name: "Salchica Chorifrito", price: 0.50 }
       ]
     },
     "ANTIOQUEÑO": {
-      baseIngredients: ["Chorizo de carne de cerdo y res, con especias naturales"," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas", " queso blanco o amarillo." ],
+      baseIngredients: ["Chorizo de carne de cerdo y res, con especias naturales"," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas" ],
+      eleccionQueso: [
+        { name: "Queso Amarillo", price: 0 },
+        { name: "Queso Blanco", price: 0 },
+        { name: "Queso Cheddar Fundido", price: 0.50 }
+      ],
       optionalIngredients: [
         { name: "Extra queso", price: 0.50 },
         { name: "Sin Cebolla", price: 0.50 }
-      ],
-      eleccionSalchicha: [
-        { name: "Salchicha Viena", price: 0.50 },
-        { name: "Salchica Alemana", price: 0.50 },
-        { name: "Salchica Chorifrito", price: 0.50 }
       ]
     },
     "KOSACA": {
-      baseIngredients: ["Salchicha Picante"," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas", " queso blanco o amarillo." ],
+      baseIngredients: ["Salchicha Picante"," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas" ],
+      eleccionQueso: [
+        { name: "Queso Amarillo", price: 0 },
+        { name: "Queso Blanco", price: 0 },
+        { name: "Queso Cheddar Fundido", price: 0.50 }
+      ],
       optionalIngredients: [
         { name: "Extra queso", price: 0.50 },
         { name: "Sin Cebolla", price: 0.50 }
-      ],
-      eleccionSalchicha: [
-        { name: "Salchicha Viena", price: 0.50 },
-        { name: "Salchica Alemana", price: 0.50 },
-        { name: "Salchica Chorifrito", price: 0.50 }
       ]
     },
      "SELVA NEGRA": {
-      baseIngredients: ["Chorizo jamonado"," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas", " queso blanco o amarillo." ],
+      baseIngredients: ["Chorizo jamonado"," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas" ],
+      eleccionQueso: [
+        { name: "Queso Amarillo", price: 0 },
+        { name: "Queso Blanco", price: 0 },
+        { name: "Queso Cheddar Fundido", price: 0.50 }
+      ],
       optionalIngredients: [
         { name: "Extra queso", price: 0.50 },
         { name: "Sin Cebolla", price: 0.50 }
-      ],
-      eleccionSalchicha: [
-        { name: "Salchicha Viena", price: 0.50 },
-        { name: "Salchica Alemana", price: 0.50 },
-        { name: "Salchica Chorifrito", price: 0.50 }
       ]
     },
      "POLACA": {
-      baseIngredients: ["Salchicha de carne de cerdo, con hierbas frescas, especias y semillas de mostaza"," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas", " queso blanco o amarillo." ],
+      baseIngredients: ["Salchicha de carne de cerdo, con hierbas frescas, especias y semillas de mostaza"," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas" ],
+      eleccionQueso: [
+        { name: "Queso Amarillo", price: 0 },
+        { name: "Queso Blanco", price: 0 },
+        { name: "Queso Cheddar Fundido", price: 0.50 }
+      ],
       optionalIngredients: [
         { name: "Extra queso", price: 0.50 },
         { name: "Sin Cebolla", price: 0.50 }
-      ],
-      eleccionSalchicha: [
-        { name: "Salchicha Viena", price: 0.50 },
-        { name: "Salchica Alemana", price: 0.50 },
-        { name: "Salchica Chorifrito", price: 0.50 }
       ]
     },
     "BAVARIA": {
-      baseIngredients: ["Salchicha de carne y finas especias"," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas", " queso blanco o amarillo." ],
+      baseIngredients: ["Salchicha de carne y finas especias"," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas" ],
+      eleccionQueso: [
+        { name: "Queso Amarillo", price: 0 },
+        { name: "Queso Blanco", price: 0 },
+        { name: "Queso Cheddar Fundido", price: 0.50 }
+      ],
       optionalIngredients: [
         { name: "Extra queso", price: 0.50 },
         { name: "Sin Cebolla", price: 0.50 }
-      ],
-      eleccionSalchicha: [
-        { name: "Salchicha Viena", price: 0.50 },
-        { name: "Salchica Alemana", price: 0.50 },
-        { name: "Salchica Chorifrito", price: 0.50 }
       ]
     },
     "FATNESS": {
-      baseIngredients: [" salchicha polacas", "chorifrito", "huevo" ," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas", " queso blanco o amarillo." ],
+      baseIngredients: [" salchicha polacas", "chorifrito", "huevo" ," Pan brioche", "cebolla"," maíz", "papas fritas tipo cabello de ángel", "salsas" ],
+      eleccionQueso: [
+        { name: "Queso Amarillo", price: 0 },
+        { name: "Queso Blanco", price: 0 },
+        { name: "Queso Cheddar Fundido", price: 0.50 }
+      ],
       optionalIngredients: [
         { name: "Extra queso", price: 0.50 },
         { name: "Sin Cebolla", price: 0.50 }
-      ],
-      eleccionSalchicha: [
-        { name: "Salchicha Viena", price: 0.50 },
-        { name: "Salchica Alemana", price: 0.50 },
-        { name: "Salchica Chorifrito", price: 0.50 }
       ]
     },
     //MENU KIDS
@@ -364,7 +391,7 @@ const menuData = {
       eleccionPresentacion: [
         {name: "Viena"},
         {name: "Alemana"},
-        {name: "Chorifrito"},
+        {name: "ChoriFrito"},
         {name: "Kosaca"},
         {name: "Antioqueño"},
         {name: "Selva Negra"},

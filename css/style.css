@@ -1569,3 +1569,31 @@ footer {
         margin-bottom: 20px;
     }
 }
+
+.delivery-icons {
+    position: absolute;
+    top: 10px;
+    right: 40px;
+    display: flex;
+    gap: 10px;
+}
+
+.delivery-icon-container {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #808080; /* Gray for not available */
+}
+
+.delivery-icon-container.available {
+    background-color: #ff6b35; /* Orange for available */
+}
+
+.delivery-icons img {
+    width: 20px;
+    height: 20px;
+    filter: invert(1); /* This will make the icons white */
+}

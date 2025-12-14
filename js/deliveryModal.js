@@ -1,33 +1,38 @@
-
 const deliveryModal = document.getElementById('delivery-modal');
 const closeModalButton = deliveryModal.querySelector('.close-modal');
 const deliveryOptions = document.querySelectorAll('.delivery-option-btn');
 
-const cocktailNames = [
-    "Gin Tonic Frutos Rojos", "Mojito Clasico o Kiwi", "Daiquirí Mango o Fresa",
-    "Piña Colada", "Blue Margarita", "Sangria con Frutas", "Polvo de Medianoche",
-    "Chelada Maracuya", "Cuba Libre", "Sneyk Pen", "Delta Sunset","Cerveza",
-    "Bebidas Naturales","Merengadas","Frappe","Limonada de Coco","Toddy","Nestea"
-];
-
-function isCocktail(itemName) {
-    return cocktailNames.includes(itemName);
+// Function to get available delivery types for an item
+export function getAvailableDeliveryTypes(itemName) {
+    const item = menuData.items[itemName];
+    if (item && item.delivery) {
+        return item.delivery;
+    }
+    // If delivery property is not defined, all options are available
+    return ["delivery", "pickup", "eat-in"];
 }
 
 // Function to open the delivery modal
 export function openDeliveryModal() {
-    const hasCocktail = window.cart.some(cartItem => isCocktail(cartItem.item.title));
+    const cartItems = window.cart || [];
+    let allAvailableTypes = ["delivery", "pickup", "eat-in"];
+
+    // Intersect the available delivery types for all items in the cart
+    cartItems.forEach(cartItem => {
+        const itemDeliveryTypes = getAvailableDeliveryTypes(cartItem.item.title);
+        allAvailableTypes = allAvailableTypes.filter(type => itemDeliveryTypes.includes(type));
+    });
 
     deliveryOptions.forEach(btn => {
-        const option = btn.querySelector('p').textContent.trim();
-        if (hasCocktail && (option === 'Delivery' || option === 'Recoger')) {
-            btn.disabled = true;
-            btn.classList.add('disabled');
-            btn.title = 'No disponible para LLevar o Delivery';
-        } else {
+        const option = btn.dataset.option;
+        if (allAvailableTypes.includes(option)) {
             btn.disabled = false;
             btn.classList.remove('disabled');
             btn.title = '';
+        } else {
+            btn.disabled = true;
+            btn.classList.add('disabled');
+            btn.title = 'No disponible para LLevar o Delivery';
         }
     });
 
