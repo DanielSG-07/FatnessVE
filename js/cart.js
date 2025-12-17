@@ -1,7 +1,8 @@
 import { openDeliveryModal } from './deliveryModal.js';
+
 // Cart functionality
 let cart = [];
-window.cart = cart;
+
 const cartIcon = document.querySelector('.cart-icon');
 const cartCount = document.getElementById('cart-count');
 const cartDisplay = document.getElementById('cart-display');
@@ -46,6 +47,22 @@ function adjustCartPosition() {
 window.addEventListener('scroll', adjustCartPosition);
 window.addEventListener('resize', adjustCartPosition);
 
+// Function to get the current cart
+export function getCart() {
+  return cart;
+}
+
+// Function to clear the cart
+export function clearCart() {
+  cart = [];
+  saveCart();
+  updateCartCount();
+  // If the cart display is open, re-render it to show it's empty
+  if (cartDisplay && cartDisplay.style.display === 'block') {
+    renderCart();
+  }
+}
+
 // Initialize cart count if element exists
 if (cartCount) {
   cartCount.textContent = '0';
@@ -84,13 +101,11 @@ function loadCart() {
           typeof cartItem.quantity === 'number' &&
           cartItem.quantity > 0
         );
-        window.cart = cart; // Update the global reference
       }
       updateCartCount();
     } catch (error) {
       console.error('Error loading cart from localStorage:', error);
       cart = [];
-      window.cart = cart;
       localStorage.removeItem('cart');
     }
   }
@@ -100,7 +115,6 @@ function loadCart() {
 function saveCart() {
   localStorage.setItem('cart', JSON.stringify(cart));
 }
-window.saveCart = saveCart; // Make global
 
 // Initialize cart on page load
 document.addEventListener('DOMContentLoaded', loadCart);
@@ -203,7 +217,6 @@ function updateCartCount() {
     cartCount.textContent = totalItems;
   }
 }
-window.updateCartCount = updateCartCount; // Make global
 
 // Show/hide cart
 if (cartIcon) {
@@ -413,7 +426,7 @@ function renderCart() {
     }
   }
 }
-window.renderCart = renderCart; // Make global
+export { renderCart };
 
 // Checkout functionality - Open delivery options modal
 if (checkoutBtn) {

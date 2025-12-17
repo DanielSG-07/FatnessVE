@@ -1,3 +1,5 @@
+import { getCart, clearCart } from './cart.js';
+
 const deliveryModal = document.getElementById('delivery-modal');
 const closeModalButton = deliveryModal.querySelector('.close-modal');
 const deliveryOptions = document.querySelectorAll('.delivery-option-btn');
@@ -14,7 +16,7 @@ export function getAvailableDeliveryTypes(itemName) {
 
 // Function to open the delivery modal
 export function openDeliveryModal() {
-    const cartItems = window.cart || [];
+    const cartItems = getCart();
     let allAvailableTypes = ["delivery", "pickup", "eat-in"];
 
     // Intersect the available delivery types for all items in the cart
@@ -52,7 +54,7 @@ function sendWhatsAppMessage(option) {
     let message = `¡Hola! Soy ${userName} y quiero hacer un pedido para ${option}:\n\n`;
     let total = 0;
 
-    window.cart.forEach(cartItem => {
+    getCart().forEach(cartItem => {
         const item = cartItem.item;
         const quantity = cartItem.quantity;
         const itemTotal = item.price * quantity;
@@ -82,6 +84,10 @@ function sendWhatsAppMessage(option) {
 
     const whatsappUrl = `https://wa.me/584247818441?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
+    
+    // Clear the cart after sending the message
+    clearCart();
+    
     closeDeliveryModal();
 }
 
