@@ -203,7 +203,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 })
                 .then(() => {
-                    console.log('User registered and profile updated:', auth.currentUser);
+                    const user = auth.currentUser;
+                    console.log('User registered and profile updated:', user);
+
+                    // Manually set localStorage to prevent race condition with onAuthStateChanged
+                    if (user) {
+                        localStorage.setItem('user', JSON.stringify({
+                            name: user.displayName,
+                            email: user.email
+                        }));
+                    }
+
                     signupForm.reset();
                     // Update UI immediately with the name
                     const welcomeElement = document.getElementById('user-welcome');
@@ -211,7 +221,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const loginIcon = document.getElementById('login-icon');
                     const loginModal = document.getElementById('login-modal');
                     if (welcomeElement) {
-                        welcomeElement.textContent = 'Bienvenido ' + name;
+                        welcomeElement.textContent = 'Bienvenido ' + user.displayName;
                     }
                     if (userAvatar) {
                         userAvatar.src = 'resourses/IconoBasico.png'; // Default avatar

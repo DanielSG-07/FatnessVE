@@ -1,5 +1,6 @@
 // Carousel functionality
 import { carouselImages } from './carouselData.js';
+import { showNotification } from './notifications.js';
 
 const carouselInner = document.querySelector('.carousel-inner');
 const prevBtn = document.querySelector('.carousel-btn.prev');
@@ -103,33 +104,7 @@ function addToCartFromCarousel(item) {
       }
     }
     // Mostrar notificación temporal
-    let notification = document.querySelector('.cart-notification');
-    if (notification) {
-      clearTimeout(window.cartNotificationTimeout);
-      notification.remove();
-    }
-
-    notification = document.createElement('div');
-    notification.className = 'cart-notification';
-    notification.textContent = 'Se ha adquirido la oferta';
-    notification.style.position = 'fixed';
-    notification.style.top = '50%';
-    notification.style.left = '50%';
-    notification.style.transform = 'translate(-50%, -50%)';
-    notification.style.backgroundColor = '#111';
-    notification.style.color = '#fff';
-    notification.style.padding = '20px';
-    notification.style.borderRadius = '10px';
-    notification.style.zIndex = '10001';
-    notification.style.fontSize = '1.2rem';
-    notification.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
-    document.body.appendChild(notification);
-
-    window.cartNotificationTimeout = setTimeout(() => {
-      if (notification && document.body.contains(notification)) {
-        document.body.removeChild(notification);
-      }
-    }, 1000);
+    showNotification("Se ha adquirido la oferta");
   } else {
     console.error('Cart not available');
   }

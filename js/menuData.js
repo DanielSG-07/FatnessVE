@@ -475,7 +475,23 @@ const menuData = {
         {name: "Chorizo"},
         {name: "Antioqueño"}
        ]
-
+      },
+      //OTROS PLATOS
+      "PIGGY": {
+        baseIngredients: ["Chuleta de Cerdo Ahumada","Salsa BBQ","Ensalada de Lechuga, Tomate, Ceblla","Papas a la Francesa"],
+          optionalIngredients:[
+            {name: "Sin Ensalada"},
+            {name: "Extra Porcion de Papas"}
+          ],
+          delivery: ["eat-in"]
+      },
+      "SUCULENTO": {
+        baseIngredients: ["Pechuga de Pollo a la Plancha","Salsa de Crema de Leche, champiñones, Maiz","Ensalada de Lechuga, Tomate, Ceblla","Papas a la Francesa"],
+          optionalIngredients:[
+            {name: "Sin Ensalada"},
+            {name: "Extra Porcion de Papas"}
+          ],
+          delivery: ["eat-in"]
       }
   }
 };

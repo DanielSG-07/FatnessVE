@@ -1597,3 +1597,18 @@ footer {
     height: 20px;
     filter: invert(1); /* This will make the icons white */
 }
+
+/* Custom Notification */
+.custom-notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #111;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 10001;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}

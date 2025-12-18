@@ -1,4 +1,5 @@
 import { getCart, clearCart } from './cart.js';
+import { showNotification } from './notifications.js';
 
 const deliveryModal = document.getElementById('delivery-modal');
 const closeModalButton = deliveryModal.querySelector('.close-modal');
@@ -28,13 +29,9 @@ export function openDeliveryModal() {
     deliveryOptions.forEach(btn => {
         const option = btn.dataset.option;
         if (allAvailableTypes.includes(option)) {
-            btn.disabled = false;
             btn.classList.remove('disabled');
-            btn.title = '';
         } else {
-            btn.disabled = true;
             btn.classList.add('disabled');
-            btn.title = 'No disponible para LLevar o Delivery';
         }
     });
 
@@ -94,8 +91,9 @@ function sendWhatsAppMessage(option) {
 // Event listeners for delivery option buttons
 deliveryOptions.forEach(btn => {
     btn.addEventListener('click', () => {
-        if (btn.disabled) {
-            return; // Do nothing if the button is disabled
+        if (btn.classList.contains('disabled')) {
+            showNotification("No se puede Solicitar el Envio Porque tiene un Elemento que no puede ser Enviado");
+            return;
         }
         const option = btn.querySelector('p').textContent;
         sendWhatsAppMessage(option);
