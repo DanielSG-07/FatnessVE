@@ -92,7 +92,7 @@ function sendWhatsAppMessage(option) {
 deliveryOptions.forEach(btn => {
     btn.addEventListener('click', () => {
         if (btn.classList.contains('disabled')) {
-            showNotification("No se puede Solicitar el Envio Porque tiene un Elemento que no puede ser Enviado");
+            showNotification("Los articulos seleccionados NO estan disponibles para este metodo de entrega");
             return;
         }
         const option = btn.querySelector('p').textContent;
