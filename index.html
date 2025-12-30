@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@FATNESS.VE</title>
     <link rel="stylesheet" href="css/style.css">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://*.firebaseio.com https://*.googleapis.com https://apis.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: http:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' wss://*.firebaseio.com https://*.googleapis.com https://www.gstatic.com https://*.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; frame-src https://www.google.com https://*.firebaseapp.com https://*.google.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://*.firebaseio.com https://*.googleapis.com https://apis.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: http:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' wss://*.firebaseio.com https://*.googleapis.com https://www.gstatic.com https://*.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; frame-src https://www.google.com https://www.youtube.com https://*.firebaseapp.com https://*.google.com;">
 
 </head>
 <body>
@@ -48,17 +48,17 @@
         <section id="home" class="hero">
             <div class="hero-content">
                 <h1>Bienvenido a FATNESS</h1>
+                <div class="status-container">
+                    <span id="status-indicator" class="status-closed"></span>
+                    <span id="status-text">Cerrado</span>
+                </div>
                  <img src="resourses/Fachada.png" alt="Fachada" class="fachada-image">
                 <p>La mejor Experiencia de Comida en la Ciudad!</p>
                 <a href="menu.html" class="btn">Ver Menu</a>
             </div>
             <div class="hero-content">
-                <!-- Como hacer un pedido-->
-                <h2></h2><br>
-                <div>
-                    <video src="">
-                    </div>
-                </div>
+                <br><h2>Como hacer un pedido</h2><br><br><hr>
+                <iframe width="315" height="560" src="https://www.youtube.com/embed/GV9IeEYy7Zs?modestbranding=1&rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border: 2px solid white;"></iframe>
             <!-- Datos de Carrusel de Promociones-->
             <!--
             <div class="promotions-section">
@@ -282,6 +282,7 @@
     <script type="module" src="js/modal.js"></script>
     <script type="module" src="js/script.js"></script>
     <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/status.js"></script>
     <script type="module" src="js/deliveryModal.js"></script>
 </body>
 </html>
