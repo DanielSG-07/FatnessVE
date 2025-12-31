@@ -1,4 +1,5 @@
 import { openDeliveryModal } from './deliveryModal.js';
+import { isStoreOpen } from './status.js';
 
 // Cart functionality
 let cart = [];
@@ -11,6 +12,21 @@ const cartItems = document.getElementById('cart-items');
 const cartTotal = document.getElementById('cart-total');
 const addToCartBtn = document.getElementById('add-to-cart-btn');
 const checkoutBtn = document.getElementById('checkout-btn');
+
+// Function to update the checkout button status
+function updateCheckoutButtonStatus() {
+    if (checkoutBtn) {
+        if (isStoreOpen()) {
+            checkoutBtn.disabled = false;
+            checkoutBtn.style.cursor = 'pointer';
+            checkoutBtn.title = '';
+        } else {
+            checkoutBtn.disabled = true;
+            checkoutBtn.style.cursor = 'not-allowed';
+            checkoutBtn.title = 'No se pueden realizar pedidos fuera del horario de atención.';
+        }
+    }
+}
 
 // Function to adjust cart position to avoid overlapping with footer
 function adjustCartPosition() {
@@ -117,7 +133,11 @@ function saveCart() {
 }
 
 // Initialize cart on page load
-document.addEventListener('DOMContentLoaded', loadCart);
+export function initializeCart() {
+    loadCart();
+    updateCheckoutButtonStatus();
+    setInterval(updateCheckoutButtonStatus, 60000); // Re-check every minute
+}
 
 // Add to cart functionality
 if (addToCartBtn) {
@@ -125,15 +145,14 @@ if (addToCartBtn) {
     const modalPriceElement = document.getElementById('modal-price');
     if (!modalPriceElement) return;
 
-    const basePriceText = modalPriceElement.textContent.replace('$', '').trim();
-    const basePrice = parseFloat(basePriceText);
+    const finalPriceText = modalPriceElement.textContent.replace('$', '').trim();
+    const finalPrice = parseFloat(finalPriceText);
 
-    if (isNaN(basePrice)) {
-      console.error('Invalid base price:', basePriceText);
+    if (isNaN(finalPrice)) {
+      console.error('Invalid final price:', finalPriceText);
       return;
     }
 
-    let additionalPrice = 0;
     const customizations = [];
     let sabor = '';
     let brand = '';
@@ -149,18 +168,11 @@ if (addToCartBtn) {
     const selectedPresentacion = document.querySelector('input[name="presentacion-choice"]:checked');
     if (selectedPresentacion) {
         const presentacionName = selectedPresentacion.nextElementSibling.textContent.split(' (+$')[0];
-        const presentacionPrice = parseFloat(selectedPresentacion.dataset.price) || 0;
-        additionalPrice += presentacionPrice;
         presentation = presentacionName;
     }
 
     // Get all selected radio buttons for exclusive choices
     document.querySelectorAll('#optional-list input[type="radio"]:checked').forEach(radio => {
-      const price = parseFloat(radio.dataset.price) || 0;
-      if (radio.name !== 'presentacion-choice') { // Price for presentation is already added
-        additionalPrice += price;
-      }
-
       if (radio.name === 'sabor-choice') {
         sabor = radio.nextElementSibling.textContent.split(' (+$')[0];
       } else if (radio.name !== 'presentacion-choice') {
@@ -170,10 +182,6 @@ if (addToCartBtn) {
 
     // Get selected checkboxes (for optional extras)
     document.querySelectorAll('#optional-list input[type="checkbox"]:checked').forEach(checkbox => {
-      const price = parseFloat(checkbox.dataset.price);
-      if (!isNaN(price)) {
-        additionalPrice += price;
-      }
       customizations.push(checkbox.nextElementSibling.textContent.split(' (+$')[0]);
     });
 
@@ -181,7 +189,7 @@ if (addToCartBtn) {
       image: document.getElementById('modal-image').src,
       title: document.getElementById('modal-title').textContent,
       description: document.getElementById('modal-description').textContent,
-      price: basePrice + additionalPrice,
+      price: finalPrice,
       customizations: customizations,
       sabor: sabor,
       brand: brand,
@@ -240,6 +248,8 @@ if (closeCart) {
 // Render cart items
 function renderCart() {
   if (!cartItems) return;
+
+  updateCheckoutButtonStatus(); // Ensure button status is correct when cart is rendered
 
   cartItems.innerHTML = '';
   let total = 0;

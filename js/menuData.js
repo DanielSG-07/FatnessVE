@@ -179,9 +179,9 @@ const menuData = {
      "Cerveza": {
       baseIngredients: ["Vaso de Cerveza Fria","Hielo"],
       eleccionMarca: [
-        { name : "Polar", price: 0 },
-        { name : "Zulia", price: 0 },
-        { name : "Solera", price: 0 }
+        { name : "Polar", price: 0.48 },
+        { name : "Zulia", price: 0.48 },
+        { name : "Solera", price: 0.85 }
       ],
       optionalIngredients: [
         { name: "Agrandar Bebida", price: 0.50 }
@@ -192,7 +192,7 @@ const menuData = {
       baseIngredients: ["Vaso de Nestea"],
       eleccionSabor:[
         {name: "Sabor Original"},
-        {name: "Con Frutas"}
+        {name: "Con Frutas", price: 1.49}
       ],
         optionalIngredients: [
         { name: "Agrandar Bebida", price: 0.50 }
@@ -389,13 +389,13 @@ const menuData = {
     "MINI HOT DOGS": {
       baseIngredients: ["Pan","Salchicha a Eleccion de Presentacion","Vegetales","Salsas","Papas Fritas"],
       eleccionPresentacion: [
-        {name: "Viena"},
-        {name: "Alemana"},
-        {name: "ChoriFrito"},
-        {name: "Kosaca"},
-        {name: "Antioqueño"},
-        {name: "Selva Negra"},
-        {name: "Polaca"}
+        {name: "Viena", price: 0},
+        {name: "Alemana", price: 0},
+        {name: "ChoriFrito", price: 0},
+        {name: "Kosaca", price: 0.73},
+        {name: "Antioqueño", price: 0.73},
+        {name: "Selva Negra", price: 0.73},
+        {name: "Polaca", price: 0.31}
       ],
       optionalIngredients: [
         { name: "Extra queso", price: 0.50 },
@@ -405,9 +405,9 @@ const menuData = {
     "MINI BURGERS":{
       baseIngredients: ["Carnes Segun Presentacion", "queso amarillo", "cebolla Morada", "tomate", "lechuga", "salsas","Pan Wooper"],
       eleccionPresentacion: [
-        {name: "Cheese Burger"},
-        {name: "Pig Burger"},
-        {name: "Chicken Burger"}
+        {name: "Cheese Burger", price: 0},
+        {name: "Pig Burger", price: 1.75},
+        {name: "Chicken Burger", price: 1.75}
       ],
        optionalIngredients: [
         { name: "Extra queso", price: 0.50 },

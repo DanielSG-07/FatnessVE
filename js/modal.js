@@ -1,4 +1,5 @@
 import { getAvailableDeliveryTypes } from './deliveryModal.js';
+import { isStoreOpen } from './status.js';
 
 // Modal functionality
 const modal = document.getElementById('item-modal');
@@ -11,6 +12,7 @@ const ingredientSection = document.getElementById('ingredient-section');
 const baseList = document.getElementById('base-list');
 const optionalList = document.getElementById('optional-list');
 const deliveryIcons = document.querySelectorAll('.delivery-icon-container');
+const addToCartBtn = document.getElementById('add-to-cart-btn');
 
 let currentItemData = null;
 
@@ -26,14 +28,57 @@ document.querySelectorAll('.menu-item').forEach(item => {
     modalTitle.textContent = title;
     modalDescription.textContent = description;
     modalPrice.textContent = price;
+    modalPrice.dataset.basePrice = price.replace('$', '').trim();
 
     // Populate ingredients and delivery icons
     populateIngredients(title);
     updateDeliveryIcons(title);
+    
+    // Update modal price initially
+    updateModalPrice();
+
+    // Enable/disable add to cart button
+    if (isStoreOpen()) {
+      addToCartBtn.disabled = false;
+      addToCartBtn.textContent = 'Agregar al Carrito';
+    } else {
+      addToCartBtn.disabled = true;
+      addToCartBtn.textContent = 'Local Cerrado';
+    }
 
     modal.style.display = 'flex';
   });
 });
+
+function updateModalPrice() {
+  const basePriceText = modalPrice.dataset.basePrice;
+  let basePrice = parseFloat(basePriceText);
+
+  if (isNaN(basePrice)) {
+    return;
+  }
+
+  let additionalPrice = 0;
+
+  // For radio and checkbox inputs
+  optionalList.querySelectorAll('input:checked').forEach(input => {
+    const price = parseFloat(input.dataset.price);
+    if (!isNaN(price)) {
+      additionalPrice += price;
+    }
+  });
+
+  // For brand buttons
+  const selectedBrand = optionalList.querySelector('.brand-button.selected');
+  if (selectedBrand) {
+    const price = parseFloat(selectedBrand.dataset.price);
+    if (!isNaN(price)) {
+      additionalPrice += price;
+    }
+  }
+
+  modalPrice.textContent = `$${(basePrice + additionalPrice).toFixed(2)}`;
+}
 
 function updateDeliveryIcons(itemTitle) {
     const availableTypes = getAvailableDeliveryTypes(itemTitle);
@@ -69,6 +114,8 @@ function populateIngredients(itemTitle) {
 
   // Optional ingredients and choices
   optionalList.innerHTML = '';
+  optionalList.addEventListener('change', updateModalPrice);
+
 
   // Exclusive choices (e.g., sausage type) rendered as radio buttons
   if (currentItemData.eleccionSalchicha && currentItemData.eleccionSalchicha.length > 0) {
@@ -112,8 +159,9 @@ function populateIngredients(itemTitle) {
     currentItemData.eleccionMarca.forEach((option, index) => {
       const brandButton = document.createElement('div');
       brandButton.className = 'brand-button';
-      brandButton.textContent = option.name;
+      brandButton.textContent = `${option.name}${option.price > 0 ? ` (+$${option.price.toFixed(2)})` : ''}`;
       brandButton.dataset.brand = option.name;
+      brandButton.dataset.price = option.price || 0;
 
       if (index === 0) {
         brandButton.classList.add('selected');
@@ -126,6 +174,7 @@ function populateIngredients(itemTitle) {
         });
         // Add selected to the clicked one
         brandButton.classList.add('selected');
+        updateModalPrice();
       });
 
       brandContainer.appendChild(brandButton);

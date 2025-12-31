@@ -1,5 +1,12 @@
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 import { auth } from './firebase-config.js';
+import { initializeCart } from './cart.js';
+import { initializeStatus } from './status.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+    initializeStatus();
+    initializeCart();
+});
 
 const welcomeElement = document.getElementById('user-welcome');
 const userAvatar = document.getElementById('user-avatar');
