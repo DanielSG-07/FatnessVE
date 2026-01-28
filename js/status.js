@@ -5,7 +5,7 @@ export function isStoreOpen() {
     const utcHours = now.getUTCHours();
     // Venezuela is UTC-4
     let vetHours = utcHours - 4;
-    
+
     // Adjust for crossing midnight into the previous day
     if (vetHours < 0) {
         vetHours += 24;

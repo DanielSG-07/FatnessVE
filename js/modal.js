@@ -2,6 +2,7 @@ import { getAvailableDeliveryTypes } from './deliveryModal.js';
 import { isStoreOpen } from './status.js';
 
 // Modal functionality
+const CURRENCY_SYMBOL = "$ BCV";
 const modal = document.getElementById('item-modal');
 const closeModal = document.querySelector('.close-modal');
 const modalImage = document.getElementById('modal-image');
@@ -17,23 +18,42 @@ const addToCartBtn = document.getElementById('add-to-cart-btn');
 let currentItemData = null;
 
 // Open modal on menu item click
+console.log("Initializing modal script");
 document.querySelectorAll('.menu-item').forEach(item => {
   item.addEventListener('click', () => {
     const imgSrc = item.querySelector('img').src;
     const title = item.querySelector('h4').textContent.trim();
     const description = item.querySelector('p').textContent;
-    const price = item.querySelector('.price').textContent;
+    // Use data-price-cop (COP value) set by priceUpdater.js
+    const priceRaw = item.getAttribute('data-price-cop');
+    let priceVal = 0;
+
+    if (priceRaw) {
+      priceVal = parseFloat(priceRaw);
+    } else {
+      // Fallback: try to extract number from text or data-price (BCV)
+      // If we don't have COP price, we must reverse calculate or accept risk
+      const bcvRaw = item.getAttribute('data-price');
+      if (bcvRaw) {
+        priceVal = parseFloat(bcvRaw) * (typeof COP_PER_BCV !== 'undefined' ? COP_PER_BCV : 2090);
+      } else {
+        const priceText = item.querySelector('.price').textContent;
+        const bcvVal = parseFloat(priceText.replace(/[^\d.]/g, ''));
+        priceVal = bcvVal * (typeof COP_PER_BCV !== 'undefined' ? COP_PER_BCV : 2090);
+      }
+    }
 
     modalImage.src = imgSrc;
     modalTitle.textContent = title;
     modalDescription.textContent = description;
-    modalPrice.textContent = price;
-    modalPrice.dataset.basePrice = price.replace('$', '').trim();
+
+    // Store numeric base price
+    modalPrice.dataset.basePrice = priceVal;
 
     // Populate ingredients and delivery icons
     populateIngredients(title);
     updateDeliveryIcons(title);
-    
+
     // Update modal price initially
     updateModalPrice();
 
@@ -62,35 +82,49 @@ function updateModalPrice() {
 
   // For radio and checkbox inputs
   optionalList.querySelectorAll('input:checked').forEach(input => {
-    const price = parseFloat(input.dataset.price);
-    if (!isNaN(price)) {
-      additionalPrice += price;
+    const priceBcv = parseFloat(input.dataset.price);
+    if (!isNaN(priceBcv)) {
+      additionalPrice += priceBcv * (typeof COP_PER_BCV !== 'undefined' ? COP_PER_BCV : 2090);
     }
   });
 
   // For brand buttons
   const selectedBrand = optionalList.querySelector('.brand-button.selected');
   if (selectedBrand) {
-    const price = parseFloat(selectedBrand.dataset.price);
-    if (!isNaN(price)) {
-      additionalPrice += price;
+    const priceBcv = parseFloat(selectedBrand.dataset.price);
+    if (!isNaN(priceBcv)) {
+      additionalPrice += priceBcv * (typeof COP_PER_BCV !== 'undefined' ? COP_PER_BCV : 2090);
     }
   }
 
-  modalPrice.textContent = `$${(basePrice + additionalPrice).toFixed(2)}`;
+  /* Manual Calculation Fallback or Display Logic */
+  const totalCOP = basePrice + additionalPrice;
+
+  let displayString = "";
+  if (typeof formatCurrency === 'function') {
+    displayString = formatCurrency(totalCOP);
+  } else {
+    const amountInBcv = totalCOP / 2090;
+    // Check for roundPrice existence
+    const roundedAmount = typeof roundPrice === 'function' ? roundPrice(amountInBcv) : amountInBcv;
+    displayString = `${CURRENCY_SYMBOL} ${roundedAmount.toFixed(2)}`;
+  }
+
+  modalPrice.textContent = displayString;
+  modalPrice.dataset.currentTotalCop = totalCOP;
 }
 
 function updateDeliveryIcons(itemTitle) {
-    const availableTypes = getAvailableDeliveryTypes(itemTitle);
+  const availableTypes = getAvailableDeliveryTypes(itemTitle);
 
-    deliveryIcons.forEach(iconContainer => {
-        const iconType = iconContainer.dataset.type;
-        if (availableTypes.includes(iconType)) {
-            iconContainer.classList.add('available');
-        } else {
-            iconContainer.classList.remove('available');
-        }
-    });
+  deliveryIcons.forEach(iconContainer => {
+    const iconType = iconContainer.dataset.type;
+    if (availableTypes.includes(iconType)) {
+      iconContainer.classList.add('available');
+    } else {
+      iconContainer.classList.remove('available');
+    }
+  });
 }
 
 // Populate ingredients based on item

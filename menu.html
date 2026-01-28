@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu - FATNESS</title>
     <link rel="stylesheet" href="css/style.css">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://*.firebaseio.com https://*.googleapis.com https://apis.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: http:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' wss://*.firebaseio.com https://*.googleapis.com https://www.gstatic.com https://*.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; frame-src https://www.google.com https://*.firebaseapp.com https://*.google.com;">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://*.firebaseio.com https://*.googleapis.com https://apis.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: http:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' wss://*.firebaseio.com https://*.googleapis.com https://www.gstatic.com https://*.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://ve.dolarapi.com; frame-src https://www.google.com https://*.firebaseapp.com https://*.google.com;">
 </head>
+
 <body>
     <header>
         <nav class="navbar">
             <div class="left-section">
-                 <div class="hamburger">
+                <div class="hamburger">
                     <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -21,11 +24,15 @@
             </div>
             <div class="social-section">
                 <div id="login-icon" class="login-icon" title="Iniciar Sesión">
-                    <img id="user-avatar" src="resourses/IconoBasico.png" alt="User Avatar" style="border-radius: 50%; width: 32px; height: 32px;">
+                    <img id="user-avatar" src="resourses/IconoBasico.png" alt="User Avatar"
+                        style="border-radius: 50%; width: 32px; height: 32px;">
                 </div>
-                <a href="https://wa.me/584247818441" target="_blank" class="whatsapp-link" title="Contactanos por WhatsApp">
+                <a href="https://wa.me/584247818441" target="_blank" class="whatsapp-link"
+                    title="Contactanos por WhatsApp">
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" fill="#fff"/>
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"
+                            fill="#fff" />
                     </svg>
                 </a>
             </div>
@@ -53,9 +60,9 @@
                 <button class="category-tab" data-category="Papas Francesas">Papas Francesas</button>
                 <button class="category-tab" data-category="KIDS">Kids</button>
                 <button class="category-tab" data-category="drinks">Bebidas</button>
-                 <button class="category-tab" data-category="Otros">Otros Platos</button>
+                <button class="category-tab" data-category="Otros">Otros Platos</button>
             </div>
-             <div class="menu-categories">
+            <div class="menu-categories">
                 <div class="category" data-category="Entradas">
                     <h3>Entradas</h3>
                     <div class="menu-items">
@@ -73,7 +80,7 @@
                             <h4>Brownie</h4>
                             <p>Brownie Con una porcion de Helado</p>
                             <span class="price">$2.50</span>
-                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="category" data-category="Otros">
@@ -82,38 +89,46 @@
                         <div class="menu-item">
                             <img src="resourses/Otros Platos/PiggyOtros.png" alt="PIGGY">
                             <h4>PIGGY</h4>
-                            <p>Jugosa chuleta de cerdo ahumada con salsa BBQ, acompañada de ensalada (lechuga, tomate y cebolla) y papas a la francesa</p>
+                            <p>Jugosa chuleta de cerdo ahumada con salsa BBQ, acompañada de ensalada (lechuga, tomate y
+                                cebolla) y papas a la francesa</p>
                             <span class="price">$11.87</span>
                         </div>
                         <div class="menu-item">
                             <img src="resourses/Otros Platos/SuculentoOtros.png" alt="SUCULENTO">
                             <h4>SUCULENTO</h4>
-                            <p>Jugosa pechuga de pollo a la plancha bañada de una suculenta salsa de crema de leche, champiñones y maíz, acompañada de ensalada (lechuga, tomate y cebolla) y papas a la francesa.</p>
+                            <p>Jugosa pechuga de pollo a la plancha bañada de una suculenta salsa de crema de leche,
+                                champiñones y maíz, acompañada de ensalada (lechuga, tomate y cebolla) y papas a la
+                                francesa.</p>
                             <span class="price">$11.87</span>
                         </div>
                     </div>
-         </div>
+                </div>
             </div>
             <div class="menu-categories">
                 <div class="category" data-category="KIDS">
                     <h3>Menu Kids</h3>
                     <div class="menu-items">
                         <div class="menu-item">
-                            <img src="https://plus.unsplash.com/premium_photo-1683657860968-7474e7ea2d80?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Tender de Pollo">
+                            <img src="https://plus.unsplash.com/premium_photo-1683657860968-7474e7ea2d80?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="Tender de Pollo">
                             <h4> TENDERS DE POLLO</h4>
-                            <p>Servicio de tenders de pollo (tiras de pechuga empanizada) acompañados de papas a la francesa.</p>
+                            <p>Servicio de tenders de pollo (tiras de pechuga empanizada) acompañados de papas a la
+                                francesa.</p>
                             <span class="price">$7.00</span>
                         </div>
                         <div class="menu-item">
-                            <img src="https://plus.unsplash.com/premium_photo-1664478240248-ea8f37738e7c?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="MINI BURGERS">
+                            <img src="https://plus.unsplash.com/premium_photo-1664478240248-ea8f37738e7c?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="MINI BURGERS">
                             <h4> MINI BURGERS</h4>
-                            <p>Mini Hamburguesa a Elegir de las Categorias de Chesse burger, Pig burger, Chicken burger.</p>
+                            <p>Mini Hamburguesa a Elegir de las Categorias de Chesse burger, Pig burger, Chicken burger.
+                            </p>
                             <span class="price">$5.25</span>
                         </div>
-                         <div class="menu-item">
+                        <div class="menu-item">
                             <img src="resourses/KIDS/PerroKids.jpg" alt="MINI Hot-Dogs">
                             <h4> MINI HOT DOGS</h4>
-                            <p>Mini Hot-Dog a Elegir de las Categorias de Viena, alemana o chorifrito. Kosaca, antioqueño, selva negra o polaca.</p>
+                            <p>Mini Hot-Dog a Elegir de las Categorias de Viena, alemana o chorifrito. Kosaca,
+                                antioqueño, selva negra o polaca.</p>
                             <span class="price">$5.94</span>
                         </div>
                     </div>
@@ -126,19 +141,22 @@
                         <div class="menu-item">
                             <img src="resourses/Hamburguesas/CheeseBurger.png" alt="CHESSE BURGUER">
                             <h4>CHESSE BURGUER</h4>
-                            <p>Croqueta de carne 180 gr, tocineta, queso amarillo, cebolla morada o caramelizada, tomate, lechuga y salsas….</p>
+                            <p>Croqueta de carne 180 gr, tocineta, queso amarillo, cebolla morada o caramelizada,
+                                tomate, lechuga y salsas….</p>
                             <span class="price">$8.90</span>
                         </div>
                         <div class="menu-item">
                             <img src="resourses/Hamburguesas/MechadaBurger.png" alt="MECHADA BURGUER">
                             <h4>MECHADA BURGUER</h4>
-                            <p>Carne mechada 150 gr, huevo, tocineta, queso, cebolla morada o caramelizada, tomate, lechuga y salsas…</p>
+                            <p>Carne mechada 150 gr, huevo, tocineta, queso, cebolla morada o caramelizada, tomate,
+                                lechuga y salsas…</p>
                             <span class="price">$9.84</span>
                         </div>
                         <div class="menu-item">
                             <img src="resourses/Hamburguesas/MomyBurger.png" alt="MOMMY BURGUER">
                             <h4> MOMMY BURGUER</h4>
-                            <p>Croqueta de carne 180 gr rellena de queso amarillo y tocineta, cebolla caramelizada y salsa americana…</p>
+                            <p>Croqueta de carne 180 gr rellena de queso amarillo y tocineta, cebolla caramelizada y
+                                salsa americana…</p>
                             <span class="price">$10.60</span>
                         </div>
                         <div class="menu-item">
@@ -150,31 +168,37 @@
                         <div class="menu-item">
                             <img src="resourses/Hamburguesas/PigBurger.png" alt=" PIG BURGUER">
                             <h4> PIG BURGUER</h4>
-                            <p>Chuleta de cerdo ahumada 200 gr, tocineta, queso amarillo, cebolla morada o caramelizada, tomate, lechuga y salsas…</p>
+                            <p>Chuleta de cerdo ahumada 200 gr, tocineta, queso amarillo, cebolla morada o caramelizada,
+                                tomate, lechuga y salsas…</p>
                             <span class="price">$11.87</span>
                         </div>
                         <div class="menu-item">
                             <img src="resourses/Hamburguesas/Ranchera.png" alt="RANCHERA PICANTE">
                             <h4>RANCHERA PICANTE</h4>
-                            <p>Croqueta de carne 180 gr, salchicha kosaca, jalapeños, salsa agria, queso blanco, maíz, cebolla morada, tomate y lechuga…</p>
+                            <p>Croqueta de carne 180 gr, salchicha kosaca, jalapeños, salsa agria, queso blanco, maíz,
+                                cebolla morada, tomate y lechuga…</p>
                             <span class="price">$12.61</span>
                         </div>
                         <div class="menu-item">
                             <img src="resourses/Hamburguesas/SmashBurger.png">
                             <h4>SMASH BURGER</h4>
-                            <p> SMASH BURGER Doble o triple croqueta deres (SMASH) queso amarillo, pepinillos, tocineta, y salsa americana.</p>
+                            <p> SMASH BURGER Doble o triple croqueta deres (SMASH) queso amarillo, pepinillos, tocineta,
+                                y salsa americana.</p>
                             <span class="price">$11.12</span>
                         </div>
                         <div class="menu-item">
                             <img src="resourses/Hamburguesas/FitnessBurger.png" alt="FITNESS BURGUER">
                             <h4>FITNESS BURGUER</h4>
-                            <p>  Croqueta de carne 360 gr, tocineta, queso, champiñón natural, pepinillos, cebolla morada, tomate, lechuga (no lleva pan, ni salsas)…</p>
+                            <p> Croqueta de carne 360 gr, tocineta, queso, champiñón natural, pepinillos, cebolla
+                                morada, tomate, lechuga (no lleva pan, ni salsas)…</p>
                             <span class="price">$10.60</span>
                         </div>
                         <div class="menu-item">
                             <img src="resourses/Hamburguesas/ByeGymBurger.png" alt="BYE GYM">
                             <h4>BYE GYM</h4>
-                            <p>Croqueta de carne 180 gr, chuleta de cerdo ahumada 200 gr, pechuga de pollo asada 150 gr, champiñones en crema de leche, cebolla morada o caramelizada, tomate, lechuga y salsas…</p>
+                            <p>Croqueta de carne 180 gr, chuleta de cerdo ahumada 200 gr, pechuga de pollo asada 150 gr,
+                                champiñones en crema de leche, cebolla morada o caramelizada, tomate, lechuga y salsas…
+                            </p>
                             <span class="price">$17.80</span>
                         </div>
                     </div>
@@ -207,7 +231,7 @@
                             <span class="price">$10.38</span>
                         </div>
                         <div class="menu-item">
-                            <img src= "resourses/PapasFrancesas/Gringas.png" alt="Gringas">
+                            <img src="resourses/PapasFrancesas/Gringas.png" alt="Gringas">
                             <h4>GRINGAS</h4>
                             <p>Servicio de papas con queso cheddar, tocineta y maíz. </p>
                             <span class="price">$11.12</span>
@@ -221,13 +245,15 @@
                         <div class="menu-item">
                             <img src="resourses/PapasFrancesas/PapasFatness.png" alt="Fatness">
                             <h4>FATNESS (3-4 PERSONAS)</h4>
-                            <p>Servicio de papas con 180gr de res (croqueta o mechada), 200gr de chuleta ahumada, 200gr de pechuga, salchicha polaca, chorizo antioqueño, queso cheddar, maíz y tocineta. </p>
+                            <p>Servicio de papas con 180gr de res (croqueta o mechada), 200gr de chuleta ahumada, 200gr
+                                de pechuga, salchicha polaca, chorizo antioqueño, queso cheddar, maíz y tocineta. </p>
                             <span class="price">$32.84</span>
                         </div>
                         <div class="menu-item">
                             <img src="resourses/PapasFrancesas/PapasFatness.png" alt="1/2 Fatness">
                             <h4>½ FATNESS (1-2 PERSONAS)</h4>
-                            <p>Servicio de papas con 90gr de res (croqueta o mechada), 100gr de chuleta ahumada, 100gr de pechuga, salchicha polaca, chorizo antioqueño, queso cheddar, maíz y tocineta.</p>
+                            <p>Servicio de papas con 90gr de res (croqueta o mechada), 100gr de chuleta ahumada, 100gr
+                                de pechuga, salchicha polaca, chorizo antioqueño, queso cheddar, maíz y tocineta.</p>
                             <span class="price">$19.60</span>
                         </div>
                     </div>
@@ -241,52 +267,52 @@
                             <p> Salchicha de carne de res.</p>
                             <span class="price">$7.42</span>
                         </div>
-                         <div class="menu-item">
+                        <div class="menu-item">
                             <img src="resourses/Perros/PerroChorifrito.png" alt="CHORIFRITO">
                             <h4>CHORIFRITO</h4>
                             <p> Chorizo ahumado de carne de cerdo y res.</p>
                             <span class="price">$7.80</span>
                         </div>
-                         <div class="menu-item">
+                        <div class="menu-item">
                             <img src="resourses/Perros/PerroAlemana.png" alt="ALEMANA">
                             <h4>ALEMANA</h4>
                             <p> Salchicha de carne de cerdo,ahumada.</p>
                             <span class="price">$7.80</span>
                         </div>
-                         <div class="menu-item">
+                        <div class="menu-item">
                             <img src="resourses/Perros/PerroAntioqueño.png" alt="ANTIOQUEÑO">
                             <h4>ANTIOQUEÑO</h4>
                             <p> Chorizo de carne de cerdo y res, con especias naturales.</p>
                             <span class="price">$8.90</span>
                         </div>
-                         <div class="menu-item">
+                        <div class="menu-item">
                             <img src="resourses/Perros/PerroKosaca.png" alt=" KOSACA">
                             <h4> KOSACA</h4>
-                            <p>  Salchicha Picante.</p>
+                            <p> Salchicha Picante.</p>
                             <span class="price">$8.90</span>
                         </div>
-                         <div class="menu-item">
+                        <div class="menu-item">
                             <img src="resourses/Perros/PerroSelvaNegra.png" alt=" SELVA NEGRA">
                             <h4> SELVA NEGRA </h4>
-                            <p>  Chorizo jamonado.</p>
+                            <p> Chorizo jamonado.</p>
                             <span class="price">$8.90</span>
                         </div>
-                         <div class="menu-item">
+                        <div class="menu-item">
                             <img src="resourses/Perros/PerroPolaca.png" alt=" POLACA">
                             <h4> POLACA </h4>
-                            <p>  Salchicha de carne de cerdo, con hierbas frescas, especias y semillas de mostaza.</p>
+                            <p> Salchicha de carne de cerdo, con hierbas frescas, especias y semillas de mostaza.</p>
                             <span class="price">$10.38</span>
                         </div>
                         <div class="menu-item">
                             <img src="resourses/Perros/PerroBavaria.png" alt=" BAVARIA">
                             <h4> BAVARIA </h4>
-                            <p>  Salchicha de carne y finas especias.</p>
+                            <p> Salchicha de carne y finas especias.</p>
                             <span class="price">$10.38</span>
                         </div>
                         <div class="menu-item">
                             <img src="resourses/Perros/PerroFatness.png" alt=" FATNESS">
                             <h4> FATNESS </h4>
-                            <p>  Perro caliente con salchicha polaca, chorifrito y huevo.</p>
+                            <p> Perro caliente con salchicha polaca, chorifrito y huevo.</p>
                             <span class="price">$11.67</span>
                         </div>
                     </div>
@@ -295,7 +321,8 @@
                     <h3>Bebidas</h3>
                     <div class="menu-items">
                         <div class="menu-item">
-                            <img src="https://media.licoresmundiales.com/media/catalog/product/cache/521bfa0199cf24b54354aeac7a407001/0/0/001-012-014.jpg" alt="Breeze">
+                            <img src="https://media.licoresmundiales.com/media/catalog/product/cache/521bfa0199cf24b54354aeac7a407001/0/0/001-012-014.jpg"
+                                alt="Breeze">
                             <h4>Vodka Breeze Ice</h4>
                             <p>Bebida de Vodka Sabor Guarana 0.27Lt</p>
                             <span class="price">$0.90</span>
@@ -307,7 +334,8 @@
                             <span class="price">$1.00</span>
                         </div>
                         <div class="menu-item">
-                            <img src="https://st3.depositphotos.com/1063437/13933/i/950/depositphotos_139336552-stock-photo-bottles-of-assorted-global-soft.jpg" alt="Refresco">
+                            <img src="https://st3.depositphotos.com/1063437/13933/i/950/depositphotos_139336552-stock-photo-bottles-of-assorted-global-soft.jpg"
+                                alt="Refresco">
                             <h4>Refresco</h4>
                             <p>Botella de Refresco de Diferentes Presentaciones</p>
                             <span class="price">$1.00</span>
@@ -330,7 +358,7 @@
                             <p>Bebida Natural, A base de Badtido de Leche, Diferentes sabores </p>
                             <span class="price">$5.61</span>
                         </div>
-                         <div class="menu-item">
+                        <div class="menu-item">
                             <img src="resourses/Bebidas/Frappe.png" alt="Frappe">
                             <h4>Frappe</h4>
                             <p>Bebida Natural Granizada, Diferentes sabores </p>
@@ -447,14 +475,19 @@
     <footer>
         <div class="footer-content">
             <span class="social-text">Siguenos en Nuestras Redes</span>
-            <a href="https://www.instagram.com/fatness.ve/" target="_blank" class="instagram-link" title="Siguenos en Instagram">
+            <a href="https://www.instagram.com/fatness.ve/" target="_blank" class="instagram-link"
+                title="Siguenos en Instagram">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="white"/>
+                    <path
+                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                        fill="white" />
                 </svg>
             </a>
             <a href="ubicacion.html" class="location-link" title="Nuestra Ubicacion">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="white"/>
+                    <path
+                        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                        fill="white" />
                 </svg>
             </a>
         </div>
@@ -464,7 +497,8 @@
     <!-- Modal for Item Details -->
     <div id="item-modal" class="modal">
         <div class="modal-content">
-            <h5>Opciones de Envio Disponibles</h5><br><hr>
+            <h5>Opciones de Envio Disponibles</h5><br>
+            <hr>
             <div class="delivery-icons">
                 <div class="delivery-icon-container" data-type="delivery">
                     <img src="resourses/delivery.svg" alt="Delivery" title="Delivery" />
@@ -557,13 +591,18 @@
                             <label for="signup-password">Contraseña</label>
                             <div class="password-container" style="position: relative;">
                                 <input type="password" id="signup-password" required style="padding-right: 40px;">
-                                <span class="password-toggle" id="signup-password-toggle" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" fill="#666"/>
+                                <span class="password-toggle" id="signup-password-toggle"
+                                    style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
+                                            fill="#666" />
                                     </svg>
                                 </span>
                             </div>
-                            <div class="password-tooltip" id="password-tooltip" style="display: none; background: #f9f9f9; border: 1px solid #ccc; padding: 10px; border-radius: 4px; margin-top: 5px;">
+                            <div class="password-tooltip" id="password-tooltip"
+                                style="display: none; background: #f9f9f9; border: 1px solid #ccc; padding: 10px; border-radius: 4px; margin-top: 5px;">
                                 <p>La contraseña debe tener:</p>
                                 <ul>
                                     <li id="req-length">Mínimo 8 caracteres</li>
@@ -575,14 +614,20 @@
                         <div class="form-group">
                             <label for="signup-confirm-password">Confirmar Contraseña</label>
                             <div class="password-container" style="position: relative;">
-                                <input type="password" id="signup-confirm-password" required style="padding-right: 40px;">
-                                <span class="password-toggle" id="signup-confirm-password-toggle" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" fill="#666"/>
+                                <input type="password" id="signup-confirm-password" required
+                                    style="padding-right: 40px;">
+                                <span class="password-toggle" id="signup-confirm-password-toggle"
+                                    style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
+                                            fill="#666" />
                                     </svg>
                                 </span>
                             </div>
-                            <div id="confirm-password-error" class="error-message" style="color: red; display: none;"></div>
+                            <div id="confirm-password-error" class="error-message" style="color: red; display: none;">
+                            </div>
                         </div>
                         <button type="submit" class="btn">Registrarse</button>
                     </form>
@@ -602,7 +647,8 @@
                     <h3>Mi Perfil</h3>
                     <div class="profile-info">
                         <div class="profile-avatar">
-                            <img id="profile-avatar" src="" alt="Profile Avatar" style="border-radius: 50%; width: 80px; height: 80px;">
+                            <img id="profile-avatar" src="" alt="Profile Avatar"
+                                style="border-radius: 50%; width: 80px; height: 80px;">
                         </div>
                         <div class="profile-details">
                             <h4 id="profile-name"></h4>
@@ -627,30 +673,68 @@
                 <div class="delivery-options">
                     <button class="delivery-option-btn" data-option="delivery">
                         <div class="delivery-option-icon">
-                            <img src="resourses/delivery.svg" alt="Delivery" style="filter: invert(1);"/>
+                            <img src="resourses/delivery.svg" alt="Delivery" style="filter: invert(1);" />
                         </div>
                         <p>Delivery</p>
                     </button>
                     <button class="delivery-option-btn" data-option="pickup">
                         <div class="delivery-option-icon">
-                            <img src="resourses/pickup.svg" alt="Recoger" style="filter: invert(1);"/>
+                            <img src="resourses/pickup.svg" alt="Recoger" style="filter: invert(1);" />
                         </div>
                         <p>Recoger</p>
                     </button>
                     <button class="delivery-option-btn" data-option="eat-in">
                         <div class="delivery-option-icon">
-                            <img src="resourses/eat-in.svg" alt="Comer local" style="filter: invert(1);"/>
+                            <img src="resourses/eat-in.svg" alt="Comer local" style="filter: invert(1);" />
                         </div>
                         <p>Comer en el local</p>
                     </button>
                 </div>
+                <button id="back-to-cart" class="btn" style="margin-top: 20px; background-color: #666;">Atrás</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Method Modal -->
+    <div id="payment-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body" style="flex-direction: column;">
+                <h3>Metodo de Pago</h3>
+                <div class="delivery-options">
+                    <button class="payment-option-btn delivery-option-btn" data-method="COP">
+                        <div class="delivery-option-icon">
+                            <!-- Simple text or icon placeholder -->
+                            <p style="font-size: 24px; font-weight: bold; margin: 0; color: #fff;">COP</p>
+                        </div>
+                        <p>Pesos Colombianos</p>
+                    </button>
+                    <button class="payment-option-btn delivery-option-btn" data-method="$ BCV">
+                        <div class="delivery-option-icon">
+                            <!-- Simple text or icon placeholder -->
+                            <p style="font-size: 24px; font-weight: bold; margin: 0; color: #fff;">BCV</p>
+                        </div>
+                        <p>Bolivares (BCV)</p>
+                    </button>
+                    <button class="payment-option-btn delivery-option-btn" data-method="$ USD">
+                        <div class="delivery-option-icon">
+                            <!-- Simple text or icon placeholder -->
+                            <p style="font-size: 24px; font-weight: bold; margin: 0; color: #fff;">USD</p>
+                        </div>
+                        <p>Dólar Efectivo</p>
+                    </button>
+                </div>
+                <button id="back-to-delivery" class="btn"
+                    style="margin-top: 20px; background-color: #666;">Atrás</button>
             </div>
         </div>
     </div>
 
     <div class="cart-icon">
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.24,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.58 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z" fill="#fff"/>
+            <path
+                d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.24,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.58 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z"
+                fill="#fff" />
         </svg>
         <span id="cart-count" class="cart-count">0</span>
     </div>
@@ -662,7 +746,11 @@
     <script type="module" src="js/cart.js"></script>
     <script type="module" src="js/carousel.js"></script>
     <script src="js/menuData.js"></script>
+    <script src="js/prices.js"></script>
+    <script src="js/priceUpdater.js"></script>
     <script type="module" src="js/modal.js"></script>
+    <script type="module" src="js/paymentModal.js"></script>
     <script src="js/script.js"></script>
 </body>
+
 </html>

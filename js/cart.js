@@ -1,7 +1,7 @@
-import { openDeliveryModal } from './deliveryModal.js';
 import { isStoreOpen } from './status.js';
 
 // Cart functionality
+const CURRENCY_SYMBOL = "$";
 let cart = [];
 
 const cartIcon = document.querySelector('.cart-icon');
@@ -15,17 +15,17 @@ const checkoutBtn = document.getElementById('checkout-btn');
 
 // Function to update the checkout button status
 function updateCheckoutButtonStatus() {
-    if (checkoutBtn) {
-        if (isStoreOpen()) {
-            checkoutBtn.disabled = false;
-            checkoutBtn.style.cursor = 'pointer';
-            checkoutBtn.title = '';
-        } else {
-            checkoutBtn.disabled = true;
-            checkoutBtn.style.cursor = 'not-allowed';
-            checkoutBtn.title = 'No se pueden realizar pedidos fuera del horario de atención.';
-        }
+  if (checkoutBtn) {
+    if (isStoreOpen()) {
+      checkoutBtn.disabled = false;
+      checkoutBtn.style.cursor = 'pointer';
+      checkoutBtn.title = '';
+    } else {
+      checkoutBtn.disabled = true;
+      checkoutBtn.style.cursor = 'not-allowed';
+      checkoutBtn.title = 'No se pueden realizar pedidos fuera del horario de atención.';
     }
+  }
 }
 
 // Function to adjust cart position to avoid overlapping with footer
@@ -85,7 +85,7 @@ if (cartCount) {
 }
 
 // Helper function to find item in cart (made global for use in other scripts)
-window.findCartItem = function(title, customizations, sabor, brand, presentation) {
+window.findCartItem = function (title, customizations, sabor, brand, presentation) {
   return cart.findIndex(cartItem =>
     cartItem &&
     cartItem.item &&
@@ -134,9 +134,9 @@ function saveCart() {
 
 // Initialize cart on page load
 export function initializeCart() {
-    loadCart();
-    updateCheckoutButtonStatus();
-    setInterval(updateCheckoutButtonStatus, 60000); // Re-check every minute
+  loadCart();
+  updateCheckoutButtonStatus();
+  setInterval(updateCheckoutButtonStatus, 60000); // Re-check every minute
 }
 
 // Add to cart functionality
@@ -145,11 +145,26 @@ if (addToCartBtn) {
     const modalPriceElement = document.getElementById('modal-price');
     if (!modalPriceElement) return;
 
-    const finalPriceText = modalPriceElement.textContent.replace('$', '').trim();
-    const finalPrice = parseFloat(finalPriceText);
+    // Robustly parse price
+    // Use the COP price stored in the modal's dataset
+    let finalPrice = 0;
 
-    if (isNaN(finalPrice)) {
-      console.error('Invalid final price:', finalPriceText);
+    if (modalPriceElement && modalPriceElement.dataset.currentTotalCop) {
+      finalPrice = parseFloat(modalPriceElement.dataset.currentTotalCop);
+    } else {
+      // Fallback or error
+      console.error("Could not find COP price in modal dataset");
+      // Try parsing text and reverse converting? Risky.
+      const text = modalPriceElement.textContent.replace(/[^\d.]/g, '');
+      const val = parseFloat(text);
+      if (!isNaN(val)) {
+        // Assuming val is BCV, convert to COP
+        finalPrice = val * (typeof COP_PER_BCV !== 'undefined' ? COP_PER_BCV : 66.66);
+      }
+    }
+
+    if (isNaN(finalPrice) || finalPrice === 0) {
+      console.error('Invalid final price:', finalPrice);
       return;
     }
 
@@ -167,8 +182,8 @@ if (addToCartBtn) {
     // Handle presentation/size selection
     const selectedPresentacion = document.querySelector('input[name="presentacion-choice"]:checked');
     if (selectedPresentacion) {
-        const presentacionName = selectedPresentacion.nextElementSibling.textContent.split(' (+$')[0];
-        presentation = presentacionName;
+      const presentacionName = selectedPresentacion.nextElementSibling.textContent.split(' (+$')[0];
+      presentation = presentacionName;
     }
 
     // Get all selected radio buttons for exclusive choices
@@ -269,11 +284,11 @@ function renderCart() {
     cart.forEach((cartItem, index) => {
       // Validate cart item structure
       if (!cartItem ||
-          !cartItem.item ||
-          typeof cartItem.item !== 'object' ||
-          typeof cartItem.item.price !== 'number' ||
-          typeof cartItem.quantity !== 'number' ||
-          cartItem.quantity <= 0) {
+        !cartItem.item ||
+        typeof cartItem.item !== 'object' ||
+        typeof cartItem.item.price !== 'number' ||
+        typeof cartItem.quantity !== 'number' ||
+        cartItem.quantity <= 0) {
         console.warn('Invalid cart item found, skipping:', cartItem);
         return;
       }
@@ -319,9 +334,27 @@ function renderCart() {
         tipoText = `<p class="customizations">Tipo: ${item.title}</p>`;
       }
 
-      let priceText = `$${item.price.toFixed(2)}`;
+      // Updated price display logic with CURRENCY_SYMBOL
+      // Updated price display logic with CURRENCY_SYMBOL
+      let priceText = "";
+      if (typeof formatCurrency === 'function') {
+        priceText = formatCurrency(item.price);
+      } else {
+        const amountInBcv = item.price / (typeof COP_PER_BCV !== 'undefined' ? COP_PER_BCV : 2090);
+        const roundedAmount = typeof roundPrice === 'function' ? roundPrice(amountInBcv) : amountInBcv;
+        priceText = `${CURRENCY_SYMBOL} ${roundedAmount.toFixed(2)}`;
+      }
+
       if (item.isDiscounted && item.originalPrice) {
-        priceText = `<span style="text-decoration: line-through; color: #ccc;">$${item.originalPrice.toFixed(2)}</span> $${item.price.toFixed(2)} <span style="color: #ff6b35; font-weight: bold;">(Descuento)</span>`;
+        let originalPriceText = "";
+        if (typeof formatCurrency === 'function') {
+          originalPriceText = formatCurrency(item.originalPrice);
+        } else {
+          const opInBcv = item.originalPrice / (typeof COP_PER_BCV !== 'undefined' ? COP_PER_BCV : 66.66);
+          const opRounded = typeof roundPrice === 'function' ? roundPrice(opInBcv) : opInBcv;
+          originalPriceText = `${CURRENCY_SYMBOL} ${opRounded.toFixed(2)}`;
+        }
+        priceText = `<span style="text-decoration: line-through; color: #ccc;">${originalPriceText}</span> ${priceText} <span style="color: #ff6b35; font-weight: bold;">(Descuento)</span>`;
       }
 
       cartItemDiv.innerHTML = `
@@ -351,7 +384,14 @@ function renderCart() {
     });
 
     if (cartTotal) {
-      cartTotal.textContent = total.toFixed(2);
+      if (typeof roundPrice === 'function' && typeof COP_PER_BCV !== 'undefined') {
+        const totalBCV = total / COP_PER_BCV;
+        const roundedTotal = roundPrice(totalBCV);
+        cartTotal.textContent = roundedTotal.toFixed(2);
+      } else {
+        // Fallback if functions/constants missing
+        cartTotal.textContent = total.toFixed(2);
+      }
     }
 
     // Add event listeners for quantity buttons
@@ -439,25 +479,5 @@ function renderCart() {
 export { renderCart };
 
 // Checkout functionality - Open delivery options modal
-if (checkoutBtn) {
-  checkoutBtn.addEventListener('click', () => {
-    if (cart.length === 0) {
-      alert('El carrito está vacío. Agrega algunos productos antes de enviar el pedido.');
-      return;
-    }
+// Checkout functionality moved to deliveryModal.js to avoid circular dependency
 
-    // Check if user is logged in
-    const storedUser = localStorage.getItem('user');
-    if (!storedUser) {
-      alert('Debes iniciar sesión antes de enviar un pedido.');
-      // Open login modal
-      const loginModal = document.getElementById('login-modal');
-      if (loginModal) {
-        loginModal.style.display = 'flex';
-      }
-      return;
-    }
-
-    openDeliveryModal();
-  });
-}
