@@ -2,7 +2,7 @@ import { getAvailableDeliveryTypes } from './deliveryModal.js';
 import { isStoreOpen } from './status.js';
 
 // Modal functionality
-const CURRENCY_SYMBOL = "$ BCV";
+const CURRENCY_SYMBOL = "$";
 const modal = document.getElementById('item-modal');
 const closeModal = document.querySelector('.close-modal');
 const modalImage = document.getElementById('modal-image');
@@ -98,7 +98,7 @@ function updateModalPrice() {
   }
 
   // Calculate total COP using COP_PER_USD for the extras
-  const additionalPriceCOP = extrasUSD * (typeof COP_PER_USD !== 'undefined' ? COP_PER_USD : 3700);
+  const additionalPriceCOP = extrasUSD * (typeof COP_PER_USD !== 'undefined' ? COP_PER_USD : 3600);
   const totalCOP = basePrice + additionalPriceCOP;
 
   // For display purposes, we use the formula: (BaseCOP / COP_PER_BCV) + ExtrasUSD

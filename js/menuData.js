@@ -1,6 +1,6 @@
 // Menu data with ingredients for each item
 // IMPORTANT: All prices in optionalIngredients, eleccionMarca, eleccionPresentacion, etc. are in USD CASH ($ Efectivo)
-// These will be converted to COP using COP_PER_USD rate (3700) in modal.js
+// These will be converted to COP using COP_PER_USD rate (3600) in modal.js
 const menuData = {
   items: {
     //Entradas

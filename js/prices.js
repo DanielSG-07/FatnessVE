@@ -7,11 +7,11 @@ const DISPLAY_CURRENCY = "$";
 // This rate is used ONLY for display conversion (COP -> BCV for showing prices)
 const COP_PER_BCV = 2090;
 
-// Exchange rate for USD Cash: 1 USD = 3700 COP
+// Exchange rate for USD Cash: 1 USD = 3600 COP
 // This rate is used for:
 // 1. Converting extras from MenuData.js (which are in USD Cash) to COP
 // 2. Converting final prices to USD Cash for payment method "$ USD"
-const COP_PER_USD = 3700;
+const COP_PER_USD = 3600;
 
 
 const priceList = {

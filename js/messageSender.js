@@ -34,7 +34,7 @@ export async function sendWhatsAppMessage(option, paymentMethod) {
 
     // Global constants from prices.js
     const rateCOP_BCV = typeof COP_PER_BCV !== 'undefined' ? COP_PER_BCV : 2090;
-    const rateCOP_USD = typeof COP_PER_USD !== 'undefined' ? COP_PER_USD : 3700;
+    const rateCOP_USD = typeof COP_PER_USD !== 'undefined' ? COP_PER_USD : 3600;
 
     // If no payment method is passed, default to 'Consultar'
     const paymentText = paymentMethod ? paymentMethod : 'Consultar';
