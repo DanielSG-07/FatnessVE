@@ -204,7 +204,9 @@ if (addToCartBtn) {
       image: document.getElementById('modal-image').src,
       title: document.getElementById('modal-title').textContent,
       description: document.getElementById('modal-description').textContent,
-      price: finalPrice,
+      price: finalPrice, // Legacy total COP
+      basePriceCop: parseFloat(modalPriceElement.dataset.basePriceCop) || finalPrice,
+      extrasUsd: parseFloat(modalPriceElement.dataset.extrasUsd) || 0,
       customizations: customizations,
       sabor: sabor,
       brand: brand,
@@ -267,7 +269,8 @@ function renderCart() {
   updateCheckoutButtonStatus(); // Ensure button status is correct when cart is rendered
 
   cartItems.innerHTML = '';
-  let total = 0;
+  let totalCOP = 0;
+  let totalDisplayUSD = 0;
 
   if (cart.length === 0) {
     const emptyMessage = document.createElement('p');
@@ -295,8 +298,13 @@ function renderCart() {
 
       const item = cartItem.item;
       const quantity = cartItem.quantity;
-      const itemTotal = item.price * quantity;
-      total += itemTotal;
+      // Internal COP total
+      totalCOP += item.price * quantity;
+
+      // Display total in "USD Units"
+      const baseInBcv = (item.basePriceCop || item.price) / (typeof COP_PER_BCV !== 'undefined' ? COP_PER_BCV : 2090);
+      const itemDisplayUSD = (baseInBcv + (item.extrasUsd || 0)) * quantity;
+      totalDisplayUSD += itemDisplayUSD;
 
       const cartItemDiv = document.createElement('div');
       cartItemDiv.className = 'cart-item';
@@ -336,10 +344,15 @@ function renderCart() {
 
       // Updated price display logic with CURRENCY_SYMBOL
       // Updated price display logic with CURRENCY_SYMBOL
+      // Updated price display logic: (BaseCOP / COP_PER_BCV) + ExtrasUSD
       let priceText = "";
-      if (typeof formatCurrency === 'function') {
-        priceText = formatCurrency(item.price);
+      if (typeof formatCurrency === 'function' && item.basePriceCop !== undefined) {
+        const baseInBcv = item.basePriceCop / (typeof COP_PER_BCV !== 'undefined' ? COP_PER_BCV : 2090);
+        const totalInBcv = baseInBcv + (item.extrasUsd || 0);
+        const roundedAmount = typeof roundPrice === 'function' ? roundPrice(totalInBcv) : totalInBcv;
+        priceText = `${DISPLAY_CURRENCY || '$'} ${roundedAmount.toFixed(2)}`;
       } else {
+        // Fallback or legacy
         const amountInBcv = item.price / (typeof COP_PER_BCV !== 'undefined' ? COP_PER_BCV : 2090);
         const roundedAmount = typeof roundPrice === 'function' ? roundPrice(amountInBcv) : amountInBcv;
         priceText = `${CURRENCY_SYMBOL} ${roundedAmount.toFixed(2)}`;
@@ -384,14 +397,8 @@ function renderCart() {
     });
 
     if (cartTotal) {
-      if (typeof roundPrice === 'function' && typeof COP_PER_BCV !== 'undefined') {
-        const totalBCV = total / COP_PER_BCV;
-        const roundedTotal = roundPrice(totalBCV);
-        cartTotal.textContent = roundedTotal.toFixed(2);
-      } else {
-        // Fallback if functions/constants missing
-        cartTotal.textContent = total.toFixed(2);
-      }
+      const roundedTotal = typeof roundPrice === 'function' ? roundPrice(totalDisplayUSD) : totalDisplayUSD;
+      cartTotal.textContent = roundedTotal.toFixed(2);
     }
 
     // Add event listeners for quantity buttons

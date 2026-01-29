@@ -78,40 +78,40 @@ function updateModalPrice() {
     return;
   }
 
-  let additionalPrice = 0;
+  let extrasUSD = 0;
 
   // For radio and checkbox inputs
   optionalList.querySelectorAll('input:checked').forEach(input => {
-    const priceBcv = parseFloat(input.dataset.price);
-    if (!isNaN(priceBcv)) {
-      additionalPrice += priceBcv * (typeof COP_PER_BCV !== 'undefined' ? COP_PER_BCV : 2090);
+    const priceVal = parseFloat(input.dataset.price);
+    if (!isNaN(priceVal)) {
+      extrasUSD += priceVal;
     }
   });
 
   // For brand buttons
   const selectedBrand = optionalList.querySelector('.brand-button.selected');
   if (selectedBrand) {
-    const priceBcv = parseFloat(selectedBrand.dataset.price);
-    if (!isNaN(priceBcv)) {
-      additionalPrice += priceBcv * (typeof COP_PER_BCV !== 'undefined' ? COP_PER_BCV : 2090);
+    const priceVal = parseFloat(selectedBrand.dataset.price);
+    if (!isNaN(priceVal)) {
+      extrasUSD += priceVal;
     }
   }
 
-  /* Manual Calculation Fallback or Display Logic */
-  const totalCOP = basePrice + additionalPrice;
+  // Calculate total COP using COP_PER_USD for the extras
+  const additionalPriceCOP = extrasUSD * (typeof COP_PER_USD !== 'undefined' ? COP_PER_USD : 3700);
+  const totalCOP = basePrice + additionalPriceCOP;
 
-  let displayString = "";
-  if (typeof formatCurrency === 'function') {
-    displayString = formatCurrency(totalCOP);
-  } else {
-    const amountInBcv = totalCOP / 2090;
-    // Check for roundPrice existence
-    const roundedAmount = typeof roundPrice === 'function' ? roundPrice(amountInBcv) : amountInBcv;
-    displayString = `${CURRENCY_SYMBOL} ${roundedAmount.toFixed(2)}`;
-  }
+  // For display purposes, we use the formula: (BaseCOP / COP_PER_BCV) + ExtrasUSD
+  const baseInBcv = basePrice / (typeof COP_PER_BCV !== 'undefined' ? COP_PER_BCV : 2090);
+  const totalInBcv = baseInBcv + extrasUSD;
+
+  const roundedAmount = typeof roundPrice === 'function' ? roundPrice(totalInBcv) : totalInBcv;
+  const displayString = `${CURRENCY_SYMBOL} ${roundedAmount.toFixed(2)}`;
 
   modalPrice.textContent = displayString;
   modalPrice.dataset.currentTotalCop = totalCOP;
+  modalPrice.dataset.extrasUsd = extrasUSD;
+  modalPrice.dataset.basePriceCop = basePrice;
 }
 
 function updateDeliveryIcons(itemTitle) {
@@ -165,7 +165,7 @@ function populateIngredients(itemTitle) {
       radio.type = 'radio';
       radio.name = 'salchicha-choice'; // Shared name makes them exclusive
       radio.id = `option-${option.name.replace(/\s+/g, '-').toLowerCase()}`;
-      radio.dataset.price = option.price;
+      radio.dataset.price = option.price || 0;
       if (index === 0) {
         radio.checked = true; // Default to the first option
       }
@@ -229,7 +229,7 @@ function populateIngredients(itemTitle) {
       radio.type = 'radio';
       radio.name = 'presentacion-choice'; // Shared name makes them exclusive
       radio.id = `option-${option.name.replace(/\s+/g, '-').toLowerCase()}`;
-      radio.dataset.price = option.price;
+      radio.dataset.price = option.price || 0;
       if (index === 0) {
         radio.checked = true; // Default to the first option
       }
@@ -287,7 +287,7 @@ function populateIngredients(itemTitle) {
       radio.type = 'radio';
       radio.name = 'queso-choice'; // Shared name makes them exclusive
       radio.id = `option-${option.name.replace(/\s+/g, '-').toLowerCase()}`;
-      radio.dataset.price = option.price;
+      radio.dataset.price = option.price || 0;
       if (index === 0) {
         radio.checked = true; // Default to the first option
       }
@@ -315,7 +315,7 @@ function populateIngredients(itemTitle) {
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
       checkbox.id = `option-${option.name.replace(/\s+/g, '-').toLowerCase()}`;
-      checkbox.dataset.price = option.price;
+      checkbox.dataset.price = option.price || 0;
 
       const label = document.createElement('label');
       label.htmlFor = checkbox.id;

@@ -32,6 +32,10 @@ export async function sendWhatsAppMessage(option, paymentMethod) {
     const user = JSON.parse(localStorage.getItem('user'));
     const userName = user ? user.name : 'Cliente';
 
+    // Global constants from prices.js
+    const rateCOP_BCV = typeof COP_PER_BCV !== 'undefined' ? COP_PER_BCV : 2090;
+    const rateCOP_USD = typeof COP_PER_USD !== 'undefined' ? COP_PER_USD : 3700;
+
     // If no payment method is passed, default to 'Consultar'
     const paymentText = paymentMethod ? paymentMethod : 'Consultar';
 
@@ -50,21 +54,19 @@ export async function sendWhatsAppMessage(option, paymentMethod) {
 
         message += `Tasa BCV: ${bcvRate.toFixed(2)} Bs/$\n\n`;
     } else if (paymentMethod === "$ USD") {
-        // For USD Cash, we use the fixed rate from prices.js (1 USD = 3700 COP)
-        const usdRate = typeof COP_PER_USD !== 'undefined' ? COP_PER_USD : 3700;
-        message += `Tasa USD Efectivo: ${usdRate.toLocaleString('es-CO')} COP/$\n\n`;
+        // For USD Cash, we use the fixed rate from prices.js
+        message += `Tasa USD Efectivo: ${rateCOP_USD.toLocaleString('es-CO')} COP/$\n\n`;
     }
 
     let totalCOP = 0;
     let totalBCV = 0;
+    let totalUSD = 0;
 
     getCart().forEach(cartItem => {
         const item = cartItem.item;
         const quantity = cartItem.quantity;
-
-        // Item price should be in COP now
-        const itemTotal = item.price * quantity;
-        totalCOP += itemTotal;
+        const basePriceCop = item.basePriceCop || item.price;
+        const extrasUSD = item.extrasUsd || 0;
 
         const papasFrancesasItems = ["CLÁSICAS", "CHEDDAR", "SALCHICHA", "SALCHICHA Y CHEDDAR", "GRINGAS", "POLLO Y CHEDDAR", "FATNESS (3-4 PERSONAS)", "½ FATNESS (1-2 PERSONAS)"];
         let title = item.title;
@@ -78,27 +80,24 @@ export async function sendWhatsAppMessage(option, paymentMethod) {
         let displayPrice = "";
 
         if (paymentMethod === "COP") {
-            displayPrice = `${itemTotal.toLocaleString('es-CO')} COP`;
+            // Formula: (Base + (Extras * COP_PER_USD)) * Quantity
+            const itemTotalCOP = (basePriceCop + (extrasUSD * rateCOP_USD)) * quantity;
+            totalCOP += itemTotalCOP;
+            displayPrice = `${itemTotalCOP.toLocaleString('es-CO')} COP`;
         } else if (paymentMethod === "$ BCV") {
-            // BCV Logic:
-            // 1. Convert COP to "Dollars" using the legacy factor (2090)
-            const amountInDollars = itemTotal / (typeof COP_PER_BCV !== 'undefined' ? COP_PER_BCV : 2090);
+            // Formula: ((Base / COP_PER_BCV) + Extras) * Quantity * bcvRate
+            const itemUnitsBCV = (basePriceCop / rateCOP_BCV) + extrasUSD;
+            const itemTotalBs = itemUnitsBCV * quantity * bcvRate;
+            totalBCV += itemTotalBs;
 
-            // 2. Convert "Dollars" to Bs using the fetched BCV Rate
-            const amountInBs = amountInDollars * bcvRate;
-
-            totalBCV += amountInBs;
-
-            const roundedAmount = typeof roundPrice === 'function' ? roundPrice(amountInBs) : amountInBs;
+            const roundedAmount = typeof roundPrice === 'function' ? roundPrice(itemTotalBs) : itemTotalBs;
             displayPrice = `Bs ${roundedAmount.toFixed(2)}`;
         } else if (paymentMethod === "$ USD") {
-            // USD Cash Logic:
-            // Convert COP to USD using the fixed rate (1 USD = 3700 COP)
-            const amountInUSD = itemTotal / (typeof COP_PER_USD !== 'undefined' ? COP_PER_USD : 3700);
+            // Formula: ((Base / COP_PER_USD) + Extras) * Quantity
+            const itemTotalUSD = ((basePriceCop / rateCOP_USD) + extrasUSD) * quantity;
+            totalUSD += itemTotalUSD;
 
-            totalBCV += amountInUSD; // Reuse totalBCV variable for USD total
-
-            const roundedAmount = typeof roundPrice === 'function' ? roundPrice(amountInUSD) : amountInUSD;
+            const roundedAmount = typeof roundPrice === 'function' ? roundPrice(itemTotalUSD) : itemTotalUSD;
             displayPrice = `$ ${roundedAmount.toFixed(2)}`;
         }
 
@@ -121,7 +120,7 @@ export async function sendWhatsAppMessage(option, paymentMethod) {
         const roundedTotal = typeof roundPrice === 'function' ? roundPrice(totalBCV) : totalBCV;
         message += `*Total del Pedido: Bs ${roundedTotal.toFixed(2)}*\n`;
     } else if (paymentMethod === "$ USD") {
-        const roundedTotal = typeof roundPrice === 'function' ? roundPrice(totalBCV) : totalBCV;
+        const roundedTotal = typeof roundPrice === 'function' ? roundPrice(totalUSD) : totalUSD;
         message += `*Total del Pedido: $ ${roundedTotal.toFixed(2)}*\n`;
     }
 

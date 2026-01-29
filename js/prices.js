@@ -1,14 +1,18 @@
 // Base prices for the menu items
-// Values are in COP (Colombian Pesos)
+// IMPORTANT: All prices in priceList are in COP (Colombian Pesos)
 const BASE_CURRENCY = "COP";
 const DISPLAY_CURRENCY = "$";
 
 // Exchange rate: How many COP equal 1 BCV?
-// Estimation: 1 USD ~ 4000 COP, 1 USD ~ 60 BCV. => 60 BCV = 4000 COP => 1 BCV = ~66.66 COP
+// This rate is used ONLY for display conversion (COP -> BCV for showing prices)
 const COP_PER_BCV = 2090;
 
 // Exchange rate for USD Cash: 1 USD = 3700 COP
+// This rate is used for:
+// 1. Converting extras from MenuData.js (which are in USD Cash) to COP
+// 2. Converting final prices to USD Cash for payment method "$ USD"
 const COP_PER_USD = 3700;
+
 
 const priceList = {
     // Entradas
@@ -58,7 +62,7 @@ const priceList = {
 
     // Bebidas
     "Vodka Breeze Ice": 3600,
-    "Cerveza": 4000,
+    "Cerveza": 2000,
     "Refresco": 4000,
     "Nestea": 8000,
     "Bebidas Naturales": 8000,
